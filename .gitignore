@@ -1,0 +1,6 @@
+Temp/
+Library/
+.vs/
+obj/
+*.csproj
+FitnessGames/ProjectSettings/ProjectSettings.asset
