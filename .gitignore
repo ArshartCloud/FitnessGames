@@ -1,7 +1,7 @@
-FitnessGames/Temp
-FitnessGames/Library
-FitnessGames/.vs
-FitnessGames/obj
+FitnessGames/Temp/*
+FitnessGames/Library/*
+FitnessGames/obj/*
 FitnessGames/ProjectSettings/ProjectSettings.asset
 *.csproj
+.vs
 FitnessGames/FitnessGames.sln
