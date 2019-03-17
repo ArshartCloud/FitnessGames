@@ -2,32 +2,43 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spawn : MonoBehaviour {
+public class Spawn : MonoBehaviour
+{
+    [Tooltip("The position for spawning")]
     public Transform spawnPoint;
-    public float speed = 6;
-    public float size = .15f;
-    public float timeGap = 1.0f;
-    Vector3 direction = new Vector3(0, 0, -1);
+    [Tooltip("The speed of spawning object")]
+    public float speed = 4.63f;
+    //[Tooltip("The size of spawning object")]
+    //public float size = .2f;
+    [Tooltip("The time between spawning two objects")]
+    public float timeGap = 5.0f;
+    [Tooltip("The object factory objects")]
+    public Factory fruitFactory;
 
-    float lastSpawnTime = Time.time;
+    Vector3 movingDirection = new Vector3(0, 0, -1);
+    float lastSpawnTime;
+
 	// Use this for initialization
 	void Start () {
-		
-	}
+        lastSpawnTime = Time.time;
+    }
 	
 	// Update is called once per frame
 	void Update () {
         if (Time.time - lastSpawnTime > timeGap)
         {
             lastSpawnTime = Time.time;
-            GameObject go = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            Rigidbody rb = go.AddComponent<Rigidbody>();
-            rb.useGravity = false;
-            rb.velocity = speed * direction;
+            //GameObject go = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            //Rigidbody rb = go.AddComponent<Rigidbody>();
+            //rb.useGravity = false;
+            //go.transform.localScale = new Vector3(size, size, size);
+            GameObject go = fruitFactory.Create();
+
+            go.GetComponent<Rigidbody>().velocity = speed * movingDirection;
             go.transform.position = spawnPoint.position;
             go.transform.rotation = spawnPoint.rotation;
-            //float size = .15f;
-            go.transform.localScale = new Vector3(size, size, size);
+            ReclaimByTime rbt = go.GetComponent<ReclaimByTime>();
+            rbt.Active(fruitFactory);
         }
 	}
 }
