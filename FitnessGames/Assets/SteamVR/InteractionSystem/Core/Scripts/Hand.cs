@@ -133,7 +133,7 @@ namespace Valve.VR.InteractionSystem
 
 
 		//-------------------------------------------------
-		// Active GameObject attached to this Hand
+		// ReclaimByTime GameObject attached to this Hand
 		//-------------------------------------------------
 		public GameObject currentAttachedObject
 		{

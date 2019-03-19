@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ReclaimByTime : MonoBehaviour {
+public class FlyingObject : MonoBehaviour {
 
     public float liveTime = 6.0f;
     float spawnTime;
@@ -11,19 +11,11 @@ public class ReclaimByTime : MonoBehaviour {
     /// <summary>
     /// enable the component, if it is the first time you use it, you should also set factory for it.
     /// </summary>
-    public void Active()
+    public void ReclaimByTime(float time = 6.0f)
     {
+        liveTime = time;
         spawnTime = Time.time;
         this.enabled = true;
-    }
-
-    /// <summary>
-    /// enable the component and set factory for it.
-    /// </summary>
-    public void Active(Factory f)
-    {
-        Active();
-        SetFactory(f);
     }
 
     /// <summary>
@@ -35,12 +27,17 @@ public class ReclaimByTime : MonoBehaviour {
         factory = f;
     }
 	
+    public void Reclaim()
+    {
+        factory.Reclaim(gameObject);
+        this.enabled = false;
+    }
+
 	// Update is called once per frame
 	void Update () {
 		if (Time.time - spawnTime > liveTime)
         {
-            factory.Reclaim(gameObject);
-            this.enabled = false;
+            Reclaim();
         }
 	}
 }

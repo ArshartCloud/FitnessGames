@@ -15,18 +15,17 @@ public class Factory : MonoBehaviour
     /// <returns>prefab object</returns>
     public GameObject Create()
     {
+        GameObject go;
         if (pool.Count > 0)
         {
-            GameObject go = pool.Pop();
-            go.SetActive(true);
-            return go;
+            go = pool.Pop();
         }
         else
         {
-            GameObject go = Instantiate(prefab);
-            go.SetActive(true);
-            return go;
+            go = Instantiate(prefab);
         }
+        go.SetActive(true);
+        return go;
     }
 
     /// <summary>

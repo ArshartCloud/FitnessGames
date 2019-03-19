@@ -37,8 +37,9 @@ public class Spawn : MonoBehaviour
             go.GetComponent<Rigidbody>().velocity = speed * movingDirection;
             go.transform.position = spawnPoint.position;
             go.transform.rotation = spawnPoint.rotation;
-            ReclaimByTime rbt = go.GetComponent<ReclaimByTime>();
-            rbt.Active(fruitFactory);
+            FlyingObject fo = go.GetComponent<FlyingObject>();
+            fo.SetFactory(fruitFactory);
+            fo.ReclaimByTime();
         }
 	}
 }
