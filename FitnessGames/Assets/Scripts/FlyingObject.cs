@@ -11,7 +11,16 @@ public class FlyingObject : MonoBehaviour {
     /// <summary>
     /// enable the component, if it is the first time you use it, you should also set factory for it.
     /// </summary>
-    public void ReclaimByTime(float time = 6.0f)
+    public void ReclaimByTime()
+    {
+        spawnTime = Time.time;
+        this.enabled = true;
+    }
+
+    /// <summary>
+    /// enable the component, if it is the first time you use it, you should also set factory for it.
+    /// </summary>
+    public void ReclaimByTime(float time)
     {
         liveTime = time;
         spawnTime = Time.time;

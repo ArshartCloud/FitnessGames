@@ -62,12 +62,21 @@ public class VirtualHand : MonoBehaviour {
 		hand.type = AffectType.Virtual;
 	}
 
-	// FixedUpdate is not called every graphical frame but rather every physics frame
-	void FixedUpdate ()
-	{
 
-		// If state is open
-		if (state == VirtualHandState.Open) {
+    // FixedUpdate is not called every graphical frame but rather every physics frame
+    void FixedUpdate ()
+	{
+        if (hand.triggerEntered)
+        {
+            print("get 1 score");
+        }
+        //if (hand.triggerExited)
+        //{
+        //    print("leave");
+        //}
+
+            // If state is open
+            if (state == VirtualHandState.Open) {
 			
 			// If the hand is touching something
 			if (hand.triggerOngoing) {
@@ -85,7 +94,7 @@ public class VirtualHand : MonoBehaviour {
 
 		// If state is touching
 		else if (state == VirtualHandState.Touching) {
-
+            //print("I am touching");
 			// If the hand is not touching something
 			if (!hand.triggerOngoing) {
 
