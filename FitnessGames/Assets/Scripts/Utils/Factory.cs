@@ -35,6 +35,7 @@ public class Factory : MonoBehaviour
     public void Reclaim(GameObject go)
     {
         pool.Push(go);
-        go.SetActive(false);
+        go.transform.position = new Vector3(1000, 1000, 1000);
+        //go.SetActive(false);
     }
 }
