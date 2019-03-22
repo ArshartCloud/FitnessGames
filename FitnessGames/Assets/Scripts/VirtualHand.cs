@@ -44,14 +44,19 @@ public class VirtualHand : MonoBehaviour {
 	[Tooltip("The button required to be pressed to grab objects.")]
 	public CommonButton button;
 
-	[Tooltip("The speed amplifier for thrown objects. One unit is physically realistic.")]
+
+
+    [Tooltip("The speed amplifier for thrown objects. One unit is physically realistic.")]
 	public float speed = 1.0f;
 
     [Tooltip("Score System to calculate score")]
     public ScoreSystem scoreSystem;
 
-    [Tooltip("Way to pause or continue")]
-    public CommonButton systemMenu;
+    [Tooltip("Way to pause")]
+    public CommonButton systemButton;
+
+    [Tooltip("Way to continue")]
+    public CommonButton menuButton;
 
     public GameController gameController = new GameController();
 	// Private interaction variables
@@ -69,16 +74,18 @@ public class VirtualHand : MonoBehaviour {
 	}
     private void Update()
     {
-        if (systemMenu.GetPressUp())
+        if (systemButton.GetPressDown())
         {
-            print("press menu");
-
             if (state == VirtualHandState.Playing)
             {
                 state = VirtualHandState.OnMenu;
                 gameController.GamePause();
             }
-            else if (state == VirtualHandState.OnMenu)
+           
+        }
+        else if(menuButton.GetPressDown())
+        {
+        if (state == VirtualHandState.OnMenu)
             {
                 state = VirtualHandState.Playing;
                 gameController.GameContinue();
