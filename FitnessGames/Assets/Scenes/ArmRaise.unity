@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028359, g: 0.22571385, b: 0.30692258, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571334, b: 0.3069219, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -463,6 +463,12 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 37281806}
   m_Script: {fileID: 11500000, guid: c2e4d0fd6c81241879e078bf11017bb3, type: 3}
+--- !u!114 &240586285 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114000011056198326, guid: e43af32dbae9d467e869346a2bd6a834,
+    type: 2}
+  m_PrefabInternal: {fileID: 1817028668}
+  m_Script: {fileID: 11500000, guid: 845da629d8bcf484eb1b69ddaec234f5, type: 3}
 --- !u!114 &396608140 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114000012129250720, guid: e43af32dbae9d467e869346a2bd6a834,
@@ -629,6 +635,7 @@ GameObject:
   - component: {fileID: 1653907736}
   - component: {fileID: 1653907737}
   - component: {fileID: 1653907738}
+  - component: {fileID: 1653907739}
   m_Layer: 0
   m_Name: Scripts
   m_TagString: Untagged
@@ -648,8 +655,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 1427786243}
-  speed: 1
-  timeGap: 2.15
+  speed: 6.89
+  timeGap: 0.82
   fruitFactory: {fileID: 1653907736}
 --- !u!4 &1653907735
 Transform:
@@ -692,6 +699,8 @@ MonoBehaviour:
   button: {fileID: 396608140}
   speed: 1
   scoreSystem: {fileID: 1653907738}
+  systemMenu: {fileID: 240586285}
+  gameController: {fileID: 1653907739}
 --- !u!114 &1653907738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -704,6 +713,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tmpro: {fileID: 216538716}
+--- !u!114 &1653907739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1653907733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06f669edbe27b47fbbf0608ed920d660, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1817028668
 Prefab:
   m_ObjectHideFlags: 0
