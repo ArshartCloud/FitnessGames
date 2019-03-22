@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/Menu.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/ArmRaise.unity
+    guid: 9c538974335cf214abaf67fbe5fed477
+  - enabled: 0
+    path: Assets/Scenes/Twist.unity
+    guid: 3164e9f4d5404ea4298637cf0939bdc9
   m_configObjects: {}
