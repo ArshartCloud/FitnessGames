@@ -53,10 +53,10 @@ public class VirtualHand : MonoBehaviour {
     public ScoreSystem scoreSystem;
 
     [Tooltip("Way to pause")]
-    public CommonButton systemButton;
+    public CommonButton pauseButton;
 
     [Tooltip("Way to continue")]
-    public CommonButton menuButton;
+    public CommonButton continueButton;
 
     public GameController gameController = new GameController();
 	// Private interaction variables
@@ -74,7 +74,7 @@ public class VirtualHand : MonoBehaviour {
 	}
     private void Update()
     {
-        if (systemButton.GetPressDown())
+        if (pauseButton.GetPressDown())
         {
             if (state == VirtualHandState.Playing)
             {
@@ -83,7 +83,7 @@ public class VirtualHand : MonoBehaviour {
             }
            
         }
-        else if(menuButton.GetPressDown())
+        else if(continueButton.GetPressDown())
         {
         if (state == VirtualHandState.OnMenu)
             {
