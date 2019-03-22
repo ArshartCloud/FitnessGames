@@ -162,6 +162,11 @@ Prefab:
       propertyPath: m_Name
       value: Controller Model(left)
       objectReference: {fileID: 0}
+    - target: {fileID: 23937166574151678, guid: c599382401df83f46801ad4be1347519,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0c49c9c4cb3e30848a1b7b0e2f8fdb85, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c599382401df83f46801ad4be1347519, type: 2}
   m_IsPrefabAsset: 0
@@ -1322,6 +1327,11 @@ Prefab:
       propertyPath: m_Name
       value: Controller Model(right)
       objectReference: {fileID: 0}
+    - target: {fileID: 23937166574151678, guid: c599382401df83f46801ad4be1347519,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0c49c9c4cb3e30848a1b7b0e2f8fdb85, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c599382401df83f46801ad4be1347519, type: 2}
   m_IsPrefabAsset: 0
