@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028359, g: 0.22571385, b: 0.30692258, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -474,31 +474,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 37281806}
   m_Script: {fileID: 11500000, guid: c2e4d0fd6c81241879e078bf11017bb3, type: 3}
---- !u!114 &240586285 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114000011056198326, guid: e43af32dbae9d467e869346a2bd6a834,
-    type: 2}
-  m_PrefabInternal: {fileID: 1817028668}
-  m_Script: {fileID: 11500000, guid: 845da629d8bcf484eb1b69ddaec234f5, type: 3}
---- !u!114 &325540458 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114000010759315470, guid: e43af32dbae9d467e869346a2bd6a834,
-    type: 2}
-  m_PrefabInternal: {fileID: 1817028668}
-  m_Script: {fileID: 11500000, guid: 845da629d8bcf484eb1b69ddaec234f5, type: 3}
---- !u!114 &396608140 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114000012129250720, guid: e43af32dbae9d467e869346a2bd6a834,
-    type: 2}
-  m_PrefabInternal: {fileID: 1817028668}
-  m_Script: {fileID: 11500000, guid: 845da629d8bcf484eb1b69ddaec234f5, type: 3}
---- !u!114 &540064498 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114000012729560220, guid: e43af32dbae9d467e869346a2bd6a834,
-    type: 2}
-  m_PrefabInternal: {fileID: 1817028668}
-  m_Script: {fileID: 11500000, guid: 845da629d8bcf484eb1b69ddaec234f5, type: 3}
---- !u!43 &881186611
+--- !u!43 &318004121
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -653,12 +629,19 @@ Mesh:
   m_MeshMetrics[0]: 1
   m_MeshMetrics[1]: 1
   m_MeshOptimized: 0
---- !u!4 &958415809 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4592683444665874, guid: 363bdd36eeb7dd7498fd4da3f492498e,
+--- !u!114 &396608140 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114000012129250720, guid: e43af32dbae9d467e869346a2bd6a834,
     type: 2}
-  m_PrefabInternal: {fileID: 1867592277}
---- !u!21 &1043535824
+  m_PrefabInternal: {fileID: 1817028668}
+  m_Script: {fileID: 11500000, guid: 845da629d8bcf484eb1b69ddaec234f5, type: 3}
+--- !u!114 &540064498 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114000012729560220, guid: e43af32dbae9d467e869346a2bd6a834,
+    type: 2}
+  m_PrefabInternal: {fileID: 1817028668}
+  m_Script: {fileID: 11500000, guid: 845da629d8bcf484eb1b69ddaec234f5, type: 3}
+--- !u!21 &603459700
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
@@ -691,6 +674,11 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+--- !u!4 &958415809 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4592683444665874, guid: 363bdd36eeb7dd7498fd4da3f492498e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1867592277}
 --- !u!1 &1145667244
 GameObject:
   m_ObjectHideFlags: 0
@@ -868,6 +856,12 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 2113815297}
   m_Script: {fileID: 11500000, guid: c2e4d0fd6c81241879e078bf11017bb3, type: 3}
+--- !u!114 &1582958002 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114000012325224004, guid: e43af32dbae9d467e869346a2bd6a834,
+    type: 2}
+  m_PrefabInternal: {fileID: 1817028668}
+  m_Script: {fileID: 11500000, guid: 845da629d8bcf484eb1b69ddaec234f5, type: 3}
 --- !u!1 &1653907733
 GameObject:
   m_ObjectHideFlags: 0
@@ -949,7 +943,7 @@ MonoBehaviour:
   button: {fileID: 396608140}
   speed: 1
   scoreSystem: {fileID: 1653907738}
-  pauseButton: {fileID: 240586285}
+  pauseButton: {fileID: 1582958002}
   continueButton: {fileID: 396608140}
   gameController: {fileID: 1653907739}
 --- !u!114 &1653907738
@@ -991,9 +985,15 @@ MonoBehaviour:
   button: {fileID: 540064498}
   speed: 1
   scoreSystem: {fileID: 1653907738}
-  pauseButton: {fileID: 325540458}
+  pauseButton: {fileID: 1670740955}
   continueButton: {fileID: 540064498}
   gameController: {fileID: 1653907739}
+--- !u!114 &1670740955 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114000010536600086, guid: e43af32dbae9d467e869346a2bd6a834,
+    type: 2}
+  m_PrefabInternal: {fileID: 1817028668}
+  m_Script: {fileID: 11500000, guid: 845da629d8bcf484eb1b69ddaec234f5, type: 3}
 --- !u!1001 &1817028668
 Prefab:
   m_ObjectHideFlags: 0
@@ -1070,12 +1070,12 @@ Prefab:
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 1043535824}
+      objectReference: {fileID: 603459700}
     - target: {fileID: 33000010896795800, guid: e43af32dbae9d467e869346a2bd6a834,
         type: 2}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 881186611}
+      objectReference: {fileID: 318004121}
     - target: {fileID: 1000012291817096, guid: e43af32dbae9d467e869346a2bd6a834, type: 2}
       propertyPath: m_IsActive
       value: 0
