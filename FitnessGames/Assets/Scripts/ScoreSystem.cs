@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DestroyWalls : MonoBehaviour {
+public class ScoreSystem : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -13,10 +13,4 @@ public class DestroyWalls : MonoBehaviour {
 	void Update () {
 		
 	}
-
-    void OnCollisionEnter(Collision collision)
-    {
-        Destroy(collision.gameObject);
-        //collision.transform.des
-    }
 }

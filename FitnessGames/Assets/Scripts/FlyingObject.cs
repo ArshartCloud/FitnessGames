@@ -36,10 +36,22 @@ public class FlyingObject : MonoBehaviour {
         factory = f;
     }
 	
+    /// <summary>
+    /// Reclaim gameObject
+    /// </summary>
     public void Reclaim()
     {
         factory.Reclaim(gameObject);
         this.enabled = false;
+    }
+
+    /// <summary>
+    /// Reclaim gameObject and do some animation
+    /// </summary>
+    public void Explode()
+    {
+        Reclaim();
+        // add some animation here
     }
 
 	// Update is called once per frame
