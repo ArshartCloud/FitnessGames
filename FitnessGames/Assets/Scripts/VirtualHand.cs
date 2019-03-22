@@ -48,6 +48,8 @@ public class VirtualHand : MonoBehaviour {
 	[Tooltip("The speed amplifier for thrown objects. One unit is physically realistic.")]
 	public float speed = 1.0f;
 
+    public ScoreSystem scoreSystem;
+
 	// Private interaction variables
 	VirtualHandState state;
 	FixedJoint grasp;
@@ -69,6 +71,7 @@ public class VirtualHand : MonoBehaviour {
         if (hand.triggerEntered)
         {
             print("get 1 score");
+            scoreSystem.AddScore(1);
         }
         //if (hand.triggerExited)
         //{
