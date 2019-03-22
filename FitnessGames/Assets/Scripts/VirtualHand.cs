@@ -71,6 +71,16 @@ public class VirtualHand : MonoBehaviour {
 	{
         if (hand.triggerEntered)
         {
+            foreach (Collider c in hand.enteredTriggers)
+            {
+                FlyingObject fo = c.GetComponent<FlyingObject>();
+                if (fo != null)
+                {
+                    scoreSystem.AddScore(1);
+                    fo.Explode();
+                    break;
+                }
+            }
             print("get 1 score");
             scoreSystem.AddScore(1);
         }
