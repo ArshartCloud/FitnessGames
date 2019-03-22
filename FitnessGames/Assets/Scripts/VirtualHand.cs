@@ -109,7 +109,7 @@ public class VirtualHand : MonoBehaviour {
                 }
             }
             //print("get 1 score");
-            scoreSystem.AddScore(1);
+            //scoreSystem.AddScore(1);
         }
         //if (hand.triggerExited)
         //{
