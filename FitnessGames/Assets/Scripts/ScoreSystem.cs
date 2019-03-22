@@ -4,9 +4,11 @@ using UnityEngine;
 using TMPro;
 
 public class ScoreSystem : MonoBehaviour {
-    
-    public int score { get; protected set; }
+
+    [Tooltip("TextMeshPro that show the current score")]
     public TextMeshPro tmpro;
+
+    public int score { get; protected set; }
 
     public void AddScore(int delta)
     {
@@ -18,14 +20,4 @@ public class ScoreSystem : MonoBehaviour {
     {
         tmpro.SetText("Score: " + score.ToString());
     }
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

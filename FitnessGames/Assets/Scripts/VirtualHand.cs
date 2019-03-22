@@ -48,6 +48,7 @@ public class VirtualHand : MonoBehaviour {
 	[Tooltip("The speed amplifier for thrown objects. One unit is physically realistic.")]
 	public float speed = 1.0f;
 
+    [Tooltip("Score System to calculate score")]
     public ScoreSystem scoreSystem;
 
 	// Private interaction variables
