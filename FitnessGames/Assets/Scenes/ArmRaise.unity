@@ -699,7 +699,8 @@ MonoBehaviour:
   button: {fileID: 396608140}
   speed: 1
   scoreSystem: {fileID: 1653907738}
-  systemMenu: {fileID: 240586285}
+  systemButton: {fileID: 240586285}
+  menuButton: {fileID: 1919664119}
   gameController: {fileID: 1653907739}
 --- !u!114 &1653907738
 MonoBehaviour:
@@ -938,6 +939,12 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1917814243}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1919664119 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114000012325224004, guid: e43af32dbae9d467e869346a2bd6a834,
+    type: 2}
+  m_PrefabInternal: {fileID: 1817028668}
+  m_Script: {fileID: 11500000, guid: 845da629d8bcf484eb1b69ddaec234f5, type: 3}
 --- !u!1 &1969039334
 GameObject:
   m_ObjectHideFlags: 0
