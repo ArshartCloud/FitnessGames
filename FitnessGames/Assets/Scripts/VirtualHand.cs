@@ -34,34 +34,21 @@ public class VirtualHand : MonoBehaviour {
         OnMenu
 	};
 
-	// Inspector parameters
-	[Tooltip("The tracking device used for tracking the real hand.")]
-	public CommonTracker tracker;
+	//// Inspector parameters
+	//[Tooltip("The tracking device used for tracking the real hand.")]
+	//public CommonTracker tracker;
 
 	[Tooltip("The interactive used to represent the virtual hand.")]
 	public Affect hand;
-
-	[Tooltip("The button required to be pressed to grab objects.")]
-	public CommonButton button;
-
-
-
-    [Tooltip("The speed amplifier for thrown objects. One unit is physically realistic.")]
-	public float speed = 1.0f;
-
-    [Tooltip("Score System to calculate score")]
-    public ScoreSystem scoreSystem;
-
+    
     [Tooltip("Way to pause")]
     public CommonButton pauseButton;
 
     [Tooltip("Way to continue")]
     public CommonButton continueButton;
-
-    public GameController gameController = new GameController();
+    
 	// Private interaction variables
 	VirtualHandState state;
-	FixedJoint grasp;
 
 	// Called at the end of the program initialization
 	void Start () {
@@ -79,7 +66,7 @@ public class VirtualHand : MonoBehaviour {
             if (state == VirtualHandState.Playing)
             {
                 state = VirtualHandState.OnMenu;
-                gameController.GamePause();
+                GameManager.instance.GamePause();
             }
            
         }
@@ -88,7 +75,7 @@ public class VirtualHand : MonoBehaviour {
         if (state == VirtualHandState.OnMenu)
             {
                 state = VirtualHandState.Playing;
-                gameController.GameContinue();
+                GameManager.instance.GameContinue();
             }
         }
     }
@@ -103,7 +90,7 @@ public class VirtualHand : MonoBehaviour {
                 FlyingObject fo = c.GetComponent<FlyingObject>();
                 if (fo != null)
                 {
-                    scoreSystem.AddScore(1);
+                    GameManager.instance.ChangeScore(1);
                     fo.Explode();
                     break;
                 }

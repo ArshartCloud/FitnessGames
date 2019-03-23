@@ -3,9 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FlyingObject : MonoBehaviour {
-
+    /// <summary>
+    /// maximum time that the flying object can live
+    /// </summary>
     public float liveTime = 6.0f;
-    float spawnTime;
+    /// <summary>
+    /// time to start the counter to reclaim.
+    /// </summary>
+    float startTime;
+    /// <summary>
+    /// the father that create the object
+    /// </summary>
     Factory factory;
 
     /// <summary>
@@ -13,7 +21,7 @@ public class FlyingObject : MonoBehaviour {
     /// </summary>
     public void ReclaimByTime()
     {
-        spawnTime = Time.time;
+        startTime = Time.time;
         this.enabled = true;
     }
 
@@ -23,7 +31,7 @@ public class FlyingObject : MonoBehaviour {
     public void ReclaimByTime(float time)
     {
         liveTime = time;
-        spawnTime = Time.time;
+        startTime = Time.time;
         this.enabled = true;
     }
 
@@ -56,7 +64,7 @@ public class FlyingObject : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (Time.time - spawnTime > liveTime)
+		if (Time.time - startTime > liveTime)
         {
             Reclaim();
         }

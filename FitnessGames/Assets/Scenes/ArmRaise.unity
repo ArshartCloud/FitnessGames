@@ -113,12 +113,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &32790641 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114000013462450548, guid: e43af32dbae9d467e869346a2bd6a834,
-    type: 2}
-  m_PrefabInternal: {fileID: 1817028668}
-  m_Script: {fileID: 11500000, guid: b63de49ab39654643838c439bb899a57, type: 3}
 --- !u!1001 &37281806
 Prefab:
   m_ObjectHideFlags: 0
@@ -905,8 +899,8 @@ MonoBehaviour:
   - {fileID: 1969039335}
   - {fileID: 1380296361}
   - {fileID: 2043922139}
-  speed: 6.89
-  timeGap: 0.82
+  speed: 4.22
+  timeGap: 5.7
   fruitFactory: {fileID: 1653907736}
 --- !u!4 &1653907735
 Transform:
@@ -944,14 +938,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 813cd6b6addbd5e4d9bb2bce797a037d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tracker: {fileID: 2001000182}
   hand: {fileID: 222773757}
-  button: {fileID: 396608140}
-  speed: 1
-  scoreSystem: {fileID: 1653907738}
   pauseButton: {fileID: 240586285}
   continueButton: {fileID: 396608140}
-  gameController: {fileID: 1653907739}
 --- !u!114 &1653907738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -975,6 +964,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06f669edbe27b47fbbf0608ed920d660, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreSystem: {fileID: 0}
 --- !u!114 &1653907740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -986,14 +976,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 813cd6b6addbd5e4d9bb2bce797a037d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tracker: {fileID: 32790641}
   hand: {fileID: 1457386031}
-  button: {fileID: 540064498}
-  speed: 1
-  scoreSystem: {fileID: 1653907738}
   pauseButton: {fileID: 325540458}
   continueButton: {fileID: 540064498}
-  gameController: {fileID: 1653907739}
 --- !u!1001 &1817028668
 Prefab:
   m_ObjectHideFlags: 0
@@ -1250,12 +1235,6 @@ Transform:
   m_Father: {fileID: 2145922911}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2001000182 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114000012954399558, guid: e43af32dbae9d467e869346a2bd6a834,
-    type: 2}
-  m_PrefabInternal: {fileID: 1817028668}
-  m_Script: {fileID: 11500000, guid: b63de49ab39654643838c439bb899a57, type: 3}
 --- !u!1 &2043922138
 GameObject:
   m_ObjectHideFlags: 0

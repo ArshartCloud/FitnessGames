@@ -10,13 +10,13 @@ public class ScoreSystem : MonoBehaviour {
 
     public int score { get; protected set; }
 
-    public void AddScore(int delta)
+    public void ChangeScore(int delta)
     {
         score += delta;
         TextUpdate();
     }
 
-    public void TextUpdate()
+    private void TextUpdate()
     {
         tmpro.SetText("Score: " + score.ToString());
     }

@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spawn : MonoBehaviour
+public class Spawner : MonoBehaviour
 {
     [Tooltip("The position for spawning")]
     public Transform[] spawnPoints;
     [Tooltip("The speed of spawning object")]
-    public float speed = 4.63f;
+    public float objectSpeed = 4.63f;
     //[Tooltip("The size of spawning object")]
     //public float size = .2f;
     [Tooltip("The time between spawning two objects")]
     public float timeGap = 5.0f;
     [Tooltip("The object factory objects")]
-    public Factory fruitFactory;
+    public Factory objectFactory;
 
     Vector3 movingDirection = new Vector3(0, 0, -1);
     float lastSpawnTime;
@@ -59,13 +59,13 @@ public class Spawn : MonoBehaviour
                 //Rigidbody rb = go.AddComponent<Rigidbody>();
                 //rb.useGravity = false;
                 //go.transform.localScale = new Vector3(size, size, size);
-                GameObject go = fruitFactory.Create();
+                GameObject go = objectFactory.Create();
 
-                go.GetComponent<Rigidbody>().velocity = speed * movingDirection;
+                go.GetComponent<Rigidbody>().velocity = objectSpeed * movingDirection;
                 go.transform.position = spawnPoints[index].position;
                 go.transform.rotation = spawnPoints[index].rotation;
                 FlyingObject fo = go.GetComponent<FlyingObject>();// get real object from unity  
-                fo.SetFactory(fruitFactory);
+                fo.SetFactory(objectFactory);
                 fo.ReclaimByTime();
             }
 
