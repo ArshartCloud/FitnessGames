@@ -5,7 +5,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     [Tooltip("The position for spawning")]
-    //public Transform[] spawnPoints;
+    public Transform[] spawnPoints;
     public Transform wallspawnPoint;
     [Tooltip("The speed of spawning object")]
     public float objectSpeed = 4.63f;
