@@ -15,6 +15,9 @@ public class Spawner : MonoBehaviour
     [Tooltip("The object factory objects")]
     public Factory objectFactory;
 
+    [Tooltip("The object Spawn each time, 1 or 2")]
+    public int SpawnNumber = 2;
+
     Vector3 movingDirection = new Vector3(0, 0, -1);
     float lastSpawnTime;
 
@@ -32,7 +35,7 @@ public class Spawner : MonoBehaviour
                 print("empty spawnPoints");
                 return;
             }
-            int leastNumber = 2;
+            int leastNumber = SpawnNumber;
             if (spawnPoints.Length == 1)
             {
                 leastNumber = 1;

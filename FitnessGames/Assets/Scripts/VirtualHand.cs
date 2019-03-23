@@ -90,8 +90,14 @@ public class VirtualHand : MonoBehaviour {
                 FlyingObject fo = c.GetComponent<FlyingObject>();
                 if (fo != null)
                 {
-                    GameManager.instance.ChangeScore(1);
-                    fo.Explode();
+                    if (fo.breakable)
+                    {
+                        fo.Explode();
+                    } else
+                    {
+                        fo.Shine();
+                    }
+                    GameManager.instance.ChangeScore(fo.score);
                     break;
                 }
             }

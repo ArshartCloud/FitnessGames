@@ -7,6 +7,17 @@ public class FlyingObject : MonoBehaviour {
     /// maximum time that the flying object can live
     /// </summary>
     public float liveTime = 6.0f;
+
+    /// <summary>
+    /// The object is break on touch or not. eg: fruit is breakable while wall is not.
+    /// </summary>
+    public bool breakable = true;
+
+    /// <summary>
+    /// the score of object
+    /// </summary>
+    public int score = 1;
+
     /// <summary>
     /// time to start the counter to reclaim.
     /// </summary>
@@ -61,6 +72,14 @@ public class FlyingObject : MonoBehaviour {
         Reclaim();
         // add some animation here
         GetComponent<AudioSource>().Play();
+    }
+
+    /// <summary>
+    /// do some fantasctic shining
+    /// </summary>
+    public void Shine()
+    {
+
     }
 
 	// Update is called once per frame
