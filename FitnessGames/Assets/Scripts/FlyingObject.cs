@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FlyingObject : MonoBehaviour {
+    // Enumerate states of virtual hand interactions
+    public enum FlyingObjectState
+    {
+        Untouched,
+        Touched
+    };
+
     /// <summary>
     /// maximum time that the flying object can live
     /// </summary>
@@ -18,6 +25,8 @@ public class FlyingObject : MonoBehaviour {
     /// </summary>
     public int score = 1;
 
+    public FlyingObjectState state = FlyingObjectState.Untouched;
+
     /// <summary>
     /// time to start the counter to reclaim.
     /// </summary>
@@ -27,13 +36,27 @@ public class FlyingObject : MonoBehaviour {
     /// </summary>
     Factory factory;
 
+    private void Start()
+    {
+        Rigidbody rb = GetComponent<Rigidbody>();
+
+        if (rb != null)
+            rb.AddExplosionForce(10.0f, transform.position, 5.0f, 3.0F);
+    }
+
+    public void Init()
+    {
+        state = FlyingObjectState.Untouched;
+        this.enabled = true;
+    }
+
     /// <summary>
     /// enable the component, if it is the first time you use it, you should also set factory for it.
     /// </summary>
     public void ReclaimByTime()
     {
         startTime = Time.time;
-        this.enabled = true;
+        Init();
     }
 
     /// <summary>
@@ -43,7 +66,7 @@ public class FlyingObject : MonoBehaviour {
     {
         liveTime = time;
         startTime = Time.time;
-        this.enabled = true;
+        Init();
     }
 
     /// <summary>
@@ -79,7 +102,7 @@ public class FlyingObject : MonoBehaviour {
     /// </summary>
     public void Shine()
     {
-
+        state = FlyingObjectState.Touched;
     }
 
 	// Update is called once per frame
