@@ -60,6 +60,7 @@ public class FlyingObject : MonoBehaviour {
     {
         Reclaim();
         // add some animation here
+        GetComponent<AudioSource>().Play();
     }
 
 	// Update is called once per frame
