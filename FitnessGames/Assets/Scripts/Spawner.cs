@@ -34,10 +34,10 @@ public class Spawner : MonoBehaviour
             lastSpawnTime = Time.time;
             GameObject go = objectFactory.Create();
             go.GetComponent<Rigidbody>().velocity = objectSpeed * movingDirection;
-            float x = Random.Range(0.0f, 2.0f);
-            print(x);
+            float x = Random.Range(0.5f, 2.0f);
+            //print(x);
             go.transform.position = wallspawnPoint.position + new Vector3(x, 0.0f, 0.0f);
-            print(go.transform.position);
+            //print(go.transform.position);
             go.transform.rotation = wallspawnPoint.rotation;
             FlyingObject fo = go.GetComponent<FlyingObject>();// get real object from unity  
             fo.SetFactory(objectFactory);
