@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    public enum SpawnerState
+    {
+        Fruit,
+        Wall
+    }
+
     [Tooltip("The position for spawning")]
     public Transform[] spawnPoints;
     public Transform wallspawnPoint;
@@ -19,6 +25,8 @@ public class Spawner : MonoBehaviour
     [Tooltip("The object Spawn each time, 1 or 2")]
     public int SpawnNumber = 2;
 
+    public SpawnerState state;
+
     Vector3 movingDirection = new Vector3(0, 0, -1);
     float lastSpawnTime;
 
@@ -31,63 +39,68 @@ public class Spawner : MonoBehaviour
 	void Update () {
         if (Time.time - lastSpawnTime > timeGap)
         {
-            lastSpawnTime = Time.time;
-            GameObject go = objectFactory.Create();
-            go.GetComponent<Rigidbody>().velocity = objectSpeed * movingDirection;
-            float x = Random.Range(0.5f, 2.0f);
-            //print(x);
-            go.transform.position = wallspawnPoint.position + new Vector3(x, 0.0f, 0.0f);
-            //print(go.transform.position);
-            go.transform.rotation = wallspawnPoint.rotation;
-            FlyingObject fo = go.GetComponent<FlyingObject>();// get real object from unity  
-            fo.SetFactory(objectFactory);
-            fo.ReclaimByTime();
+            if (state == SpawnerState.Wall)
+            {
+                lastSpawnTime = Time.time;
+                GameObject go = objectFactory.Create();
+                go.GetComponent<Rigidbody>().velocity = objectSpeed * movingDirection;
+                float x = Random.Range(0.5f, 2.0f);
+                //print(x);
+                go.transform.position = wallspawnPoint.position + new Vector3(x, 0.0f, 0.0f);
+                //print(go.transform.position);
+                go.transform.rotation = wallspawnPoint.rotation;
+                FlyingObject fo = go.GetComponent<FlyingObject>();// get real object from unity  
+                fo.SetFactory(objectFactory);
+                fo.ReclaimByTime();
 
-            lastSpawnTime = Time.time;
-            go = objectFactory.Create();
-            go.GetComponent<Rigidbody>().velocity = objectSpeed * movingDirection;
-            go.transform.position = wallspawnPoint.position + new Vector3(-x, 0.0f, 0.0f);
-            go.transform.rotation = wallspawnPoint.rotation;
-            fo = go.GetComponent<FlyingObject>();// get real object from unity  
-            fo.SetFactory(objectFactory);
-            fo.ReclaimByTime();
+                lastSpawnTime = Time.time;
+                go = objectFactory.Create();
+                go.GetComponent<Rigidbody>().velocity = objectSpeed * movingDirection;
+                go.transform.position = wallspawnPoint.position + new Vector3(-x, 0.0f, 0.0f);
+                go.transform.rotation = wallspawnPoint.rotation;
+                fo = go.GetComponent<FlyingObject>();// get real object from unity  
+                fo.SetFactory(objectFactory);
+                fo.ReclaimByTime();
+            } else if (state == SpawnerState.Fruit)
+            {
+                int leastNumber = SpawnNumber;
+                if (spawnPoints.Length == 1)
+                {
+                    leastNumber = 1;
+                }
+                int index = Random.Range(0, spawnPoints.Length);
+                for (int i = 0; i < leastNumber; i++)
+                {
+                    if (i == 0)
+                    {
 
-            //int leastNumber = SpawnNumber;
-            //if (spawnPoints.Length == 1)
-            //{
-            //    leastNumber = 1;
-            //}
-            //int index = Random.Range(0, spawnPoints.Length);
-            //for (int i = 0; i < leastNumber; i++)
-            //{
-            //    if (i == 0)
-            //    {
+                    }
+                    else
+                    {
+                        int tempIndex = Random.Range(0, spawnPoints.Length);
+                        while (index == tempIndex)
+                        {
+                            tempIndex = Random.Range(0, spawnPoints.Length);
+                        }
+                        index = tempIndex;
+                    }
 
-            //    }
-            //    else
-            //    {
-            //        int tempIndex = Random.Range(0, spawnPoints.Length);
-            //        while ( index == tempIndex)
-            //        {
-            //             tempIndex = Random.Range(0, spawnPoints.Length);
-            //        }
-            //        index = tempIndex;
-            //    }
+                    lastSpawnTime = Time.time;
+                    //GameObject go = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                    //Rigidbody rb = go.AddComponent<Rigidbody>();
+                    //rb.useGravity = false;
+                    //go.transform.localScale = new Vector3(size, size, size);
+                    GameObject go = objectFactory.Create();
 
-            //    lastSpawnTime = Time.time;
-            //    //GameObject go = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            //    //Rigidbody rb = go.AddComponent<Rigidbody>();
-            //    //rb.useGravity = false;
-            //    //go.transform.localScale = new Vector3(size, size, size);
-            //    GameObject go = objectFactory.Create();
+                    go.GetComponent<Rigidbody>().velocity = objectSpeed * movingDirection;
+                    go.transform.position = spawnPoints[index].position;
+                    go.transform.rotation = spawnPoints[index].rotation;
+                    FlyingObject fo = go.GetComponent<FlyingObject>();// get real object from unity  
+                    fo.SetFactory(objectFactory);
+                    fo.ReclaimByTime();
+                }
+            }
 
-            //    go.GetComponent<Rigidbody>().velocity = objectSpeed * movingDirection;
-            //    go.transform.position = spawnPoints[index].position;
-            //    go.transform.rotation = spawnPoints[index].rotation;
-            //    FlyingObject fo = go.GetComponent<FlyingObject>();// get real object from unity  
-            //    fo.SetFactory(objectFactory);
-            //    fo.ReclaimByTime();
-            //}
 
         }
     }

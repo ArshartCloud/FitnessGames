@@ -208,7 +208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b24b0ed541a94655bab28e1a318582d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shape: 6
+  shape: 0
   useGravity: 0
 --- !u!114 &114490221769652638
 MonoBehaviour:
@@ -224,3 +224,4 @@ MonoBehaviour:
   liveTime: 20
   breakable: 0
   score: -1
+  state: 0
