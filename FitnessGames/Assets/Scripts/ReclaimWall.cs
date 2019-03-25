@@ -5,7 +5,7 @@ using UnityEngine;
 public class ReclaimWall : Affect {
     protected override void OnTriggerExit(Collider trigger)
     {
-        print("I got u");
+        //print("I got u");
         // Update all the states
         OnTriggerUpdate();
         // Avoid self triggering

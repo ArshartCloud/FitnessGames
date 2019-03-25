@@ -103,6 +103,8 @@ public class FlyingObject : MonoBehaviour {
     public void Shine()
     {
         state = FlyingObjectState.Touched;
+        // add some animation here
+        GetComponent<AudioSource>().Play();
     }
 
 	// Update is called once per frame
