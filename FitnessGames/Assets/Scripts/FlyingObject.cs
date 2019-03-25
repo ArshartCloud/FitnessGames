@@ -92,9 +92,11 @@ public class FlyingObject : MonoBehaviour {
     /// </summary>
     public void Explode()
     {
-        Reclaim();
         // add some animation here
         GetComponent<AudioSource>().Play();
+
+
+        Reclaim();
     }
 
     /// <summary>
@@ -102,9 +104,10 @@ public class FlyingObject : MonoBehaviour {
     /// </summary>
     public void Shine()
     {
-        state = FlyingObjectState.Touched;
         // add some animation here
         GetComponent<AudioSource>().Play();
+
+        state = FlyingObjectState.Touched;
     }
 
 	// Update is called once per frame
