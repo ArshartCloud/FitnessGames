@@ -3,11 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
+    // Enumerate states of virtual hand interactions
+    public enum GameState
+    {
+        Playing,
+        OnMenu
+    };
+
     //Static instance of GameManager which allows it to be accessed by any other script.
     public static GameManager instance = null;
 
     [Tooltip("Score System to calculate score")]
     public ScoreSystem scoreSystem;
+
+
+    [Tooltip("Way to pause")]
+    public CommonButton[] pauseButtons;
+
+    //[Tooltip("Way to continue")]
+    //public CommonButton[] continueButtons;
+
+    // Private interaction variables
+    GameState state;
+    bool onClick = false;
+    bool buttonDown = false;
 
     //Awake is always called before any Start functions
     void Awake()
@@ -40,9 +59,45 @@ public class GameManager : MonoBehaviour {
     void Start () {
 		
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    // Update is called once per frame
+    private void Update()
+    {
+        bool buttonPress = false;
+        foreach (CommonButton pauseButton in pauseButtons)
+        {
+            if (pauseButton.GetPressDown())
+            {
+                buttonPress = true;
+            }
+        }
+        if (!buttonPress && buttonDown)
+        {
+            onClick = true;
+            buttonDown = false;
+        }
+        if (onClick)
+        {
+            onClick = false;
+            if (state == GameState.Playing)
+            {
+                state = GameState.OnMenu;
+                GamePause();
+            } else if (state == GameState.Playing)
+            {
+                state = GameState.Playing;
+                GameContinue();
+            }
+        }
+
+
+        //else if (continueButton.GetPressDown())
+        //{
+        //    if (state == GameState.OnMenu)
+        //    {
+        //        state = GameState.Playing;
+        //        GameManager.instance.GameContinue();
+        //    }
+        //}
+    }
 }
