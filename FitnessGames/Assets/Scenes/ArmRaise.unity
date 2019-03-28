@@ -427,7 +427,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 958415809}
+  - {fileID: 1867592278}
   - {fileID: 1917814244}
   - {fileID: 2145922911}
   - {fileID: 2120080895}
@@ -4698,11 +4698,6 @@ Transform:
   m_Father: {fileID: 1375785629}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &958415809 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4592683444665874, guid: 363bdd36eeb7dd7498fd4da3f492498e,
-    type: 2}
-  m_PrefabInternal: {fileID: 1867592277}
 --- !u!1 &966914641
 GameObject:
   m_ObjectHideFlags: 0
@@ -7497,7 +7492,7 @@ MonoBehaviour:
   wallspawnPoint: {fileID: 0}
   objectSpeed: 4.63
   timeGap: 1.55
-  objectFactory: {fileID: 1653907736}
+  objectFactorys: []
   SpawnNumber: 2
   state: 0
 --- !u!4 &1653907735
@@ -7524,7 +7519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f84eb370e64cbf445b3ea83bdfdc377c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 1199799966270714, guid: 363bdd36eeb7dd7498fd4da3f492498e, type: 2}
+  prefabs: []
 --- !u!114 &1653907737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7565,6 +7560,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreSystem: {fileID: 1653907738}
+  pauseButtons: []
 --- !u!114 &1653907740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8681,6 +8677,10 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 363bdd36eeb7dd7498fd4da3f492498e, type: 2}
   m_IsPrefabAsset: 0
+--- !u!4 &1867592278 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 1867592277}
 --- !u!1 &1879579418
 GameObject:
   m_ObjectHideFlags: 0
