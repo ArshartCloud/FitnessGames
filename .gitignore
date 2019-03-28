@@ -6,3 +6,7 @@ FitnessGames/ProjectSettings/ProjectSettings.asset
 .vs
 FitnessGames/FitnessGames.sln
 FitnessGames/ProjectSettings/ProjectSettings.asset
+FitnessGames/Assets/Mytest.meta
+FitnessGames/Assets/Scenes/Mytest.unity
+FitnessGames/Assets/Scenes/Mytest.unity.meta
+FitnessGames/Assets/Mytest/*

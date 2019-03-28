@@ -20,7 +20,7 @@ public class Spawner : MonoBehaviour
     [Tooltip("The time between spawning two objects")]
     public float timeGap = 5.0f;
     [Tooltip("The object factory objects")]
-    public Factory objectFactory;
+    public Factory[] objectFactorys;
 
     [Tooltip("The object Spawn each time, 1 or 2")]
     public int SpawnNumber = 2;
@@ -39,6 +39,7 @@ public class Spawner : MonoBehaviour
 	void Update () {
         if (Time.time - lastSpawnTime > timeGap)
         {
+            Factory objectFactory = objectFactorys[Random.Range(0, objectFactorys.Length)];
             if (state == SpawnerState.Wall)
             {
                 lastSpawnTime = Time.time;
