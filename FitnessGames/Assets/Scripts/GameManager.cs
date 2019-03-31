@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviour {
     [Tooltip("Score System to calculate score")]
     public ScoreSystem scoreSystem;
 
-
     [Tooltip("Way to pause")]
     public CommonButton[] pauseButtons;
 
@@ -24,7 +23,7 @@ public class GameManager : MonoBehaviour {
     //public CommonButton[] continueButtons;
 
     // Private interaction variables
-    GameState state;
+    GameState state = GameState.Playing;
     bool onClick = false;
     bool buttonDown = false;
 
@@ -41,7 +40,7 @@ public class GameManager : MonoBehaviour {
             print("\n\nWarning! Multiple GameManager!\n\n");
     }
 
-        public void GamePause()
+    public void GamePause()
     {
         Time.timeScale = 0;
     }
@@ -69,6 +68,7 @@ public class GameManager : MonoBehaviour {
             if (pauseButton.GetPressDown())
             {
                 buttonPress = true;
+                buttonDown = true;
             }
         }
         if (!buttonPress && buttonDown)
@@ -78,18 +78,18 @@ public class GameManager : MonoBehaviour {
         }
         if (onClick)
         {
+            print("click");
             onClick = false;
             if (state == GameState.Playing)
             {
                 state = GameState.OnMenu;
                 GamePause();
-            } else if (state == GameState.Playing)
+            } else if (state == GameState.OnMenu)
             {
                 state = GameState.Playing;
                 GameContinue();
             }
         }
-
 
         //else if (continueButton.GetPressDown())
         //{
