@@ -78,7 +78,7 @@ public class GameManager : MonoBehaviour {
         }
         if (onClick)
         {
-            print("click");
+         //   print("click");
             onClick = false;
             if (state == GameState.Playing)
             {

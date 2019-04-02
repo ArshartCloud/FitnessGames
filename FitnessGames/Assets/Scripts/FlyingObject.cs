@@ -93,7 +93,7 @@ public class FlyingObject : MonoBehaviour {
     public void Explode()
     {
         // add some animation here
-        GetComponent<AudioSource>().Play();
+   //     GetComponent<AudioSource>().Play();
 
 
         Reclaim();
