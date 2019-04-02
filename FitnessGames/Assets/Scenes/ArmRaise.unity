@@ -2915,6 +2915,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dad1f30ea16c4dd5a9d9724ecb9df3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SpawnNumber: 2
   spawnPoints:
   - {fileID: 1427786243}
   - {fileID: 1969039335}
@@ -2925,7 +2926,6 @@ MonoBehaviour:
   timeGap: 1.55
   objectFactorys:
   - {fileID: 1653907736}
-  SpawnNumber: 2
   state: 0
 --- !u!4 &1653907735
 Transform:
@@ -2973,7 +2973,7 @@ MonoBehaviour:
   - {fileID: 1842802584040088, guid: 53ab662df36067545b62182bf7912db9, type: 2}
   - {fileID: 1392123829568544, guid: c7ec64969c8953440a17a8fa8085121d, type: 2}
   - {fileID: 1589395411567386, guid: 34e5cc8311a76a843bdda8436424e164, type: 2}
-  - {fileID: 1908537618045696, guid: 5d61fd37af045014c9dd46f7d13bf4e1, type: 2}
+  - {fileID: 0}
   - {fileID: 1185044334756384, guid: dedbceda3fe207d42b9022ff66714c1c, type: 2}
   - {fileID: 1353436885611020, guid: 52f8250e43b44c54fb37fca35b9b9c9a, type: 2}
 --- !u!114 &1653907737
