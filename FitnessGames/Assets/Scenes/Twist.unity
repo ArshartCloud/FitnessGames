@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571334, b: 0.3069219, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2679,12 +2679,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dad1f30ea16c4dd5a9d9724ecb9df3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SpawnNumber: 2
   spawnPoints: []
   wallspawnPoint: {fileID: 1179528478}
   objectSpeed: 4.63
   timeGap: 1
-  objectFactory: {fileID: 1653907736}
-  SpawnNumber: 2
+  objectFactorys: []
   state: 1
 --- !u!4 &1653907735
 Transform:
@@ -2710,7 +2710,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f84eb370e64cbf445b3ea83bdfdc377c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 1712094730749022, guid: 1202ce7a074ad4a29b8efd321f1e139b, type: 2}
+  prefabs: []
 --- !u!114 &1653907738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2735,6 +2735,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreSystem: {fileID: 1653907738}
+  pauseButtons: []
 --- !u!1 &1766706708
 GameObject:
   m_ObjectHideFlags: 0
