@@ -35,6 +35,7 @@ public class FlyingObject : MonoBehaviour {
     /// the father that create the object
     /// </summary>
     Factory factory;
+    bool isReclaim = false;
 
     private void Start()
     {
@@ -48,6 +49,7 @@ public class FlyingObject : MonoBehaviour {
     {
         state = FlyingObjectState.Untouched;
         this.enabled = true;
+	isReclaim = true;
     }
 
     /// <summary>
@@ -83,8 +85,11 @@ public class FlyingObject : MonoBehaviour {
     /// </summary>
     public void Reclaim()
     {
-        factory.Reclaim(gameObject);
-        this.enabled = false;
+	if (isReclaim) {
+		isReclaim = false;
+        	factory.Reclaim(gameObject);
+        	this.enabled = false;
+	}
     }
 
     /// <summary>
