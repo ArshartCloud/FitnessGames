@@ -10,8 +10,11 @@ public class Spawner : MonoBehaviour
         Wall
     }
 
-    [Tooltip("The position for spawning")]
+    [Tooltip("The object Spawn each time")]
+    public int SpawnNumber = 2;
+    [Tooltip("The position for spawning, continus SpawnNumber position are fix order")]
     public Transform[] spawnPoints;
+
     public Transform wallspawnPoint;
     [Tooltip("The speed of spawning object")]
     public float objectSpeed = 4.63f;
@@ -21,9 +24,6 @@ public class Spawner : MonoBehaviour
     public float timeGap = 5.0f;
     [Tooltip("The object factory objects")]
     public Factory[] objectFactorys;
-
-    [Tooltip("The object Spawn each time, 1 or 2")]
-    public int SpawnNumber = 2;
 
     public SpawnerState state;
 
@@ -64,45 +64,27 @@ public class Spawner : MonoBehaviour
                 fo.ReclaimByTime();
             } else if (state == SpawnerState.Fruit)
             {
-                int leastNumber = SpawnNumber;
-                if (spawnPoints.Length == 1)
+                // fix number
+                if (spawnPoints.Length < SpawnNumber)
                 {
-                    leastNumber = 1;
+                    return;
                 }
-                int index = Random.Range(0, spawnPoints.Length);
-                for (int i = 0; i < leastNumber; i++)
+                int index = Random.Range(0, spawnPoints.Length / SpawnNumber);
+		index *= SpawnNumber;
+                for (int i = 0; i < SpawnNumber; i++)
                 {
-                    if (i == 0)
-                    {
-
-                    }
-                    else
-                    {
-                        int tempIndex = Random.Range(0, spawnPoints.Length);
-                        while (index == tempIndex)
-                        {
-                            tempIndex = Random.Range(0, spawnPoints.Length);
-                        }
-                        index = tempIndex;
-                    }
-
                     lastSpawnTime = Time.time;
-                    //GameObject go = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                    //Rigidbody rb = go.AddComponent<Rigidbody>();
-                    //rb.useGravity = false;
-                    //go.transform.localScale = new Vector3(size, size, size);
                     GameObject go = objectFactory.Create();
-
+                    go.transform.SetParent(GameObject.Find("World").transform, true);
                     go.GetComponent<Rigidbody>().velocity = objectSpeed * movingDirection;
                     go.transform.position = spawnPoints[index].position;
                     go.transform.rotation = spawnPoints[index].rotation;
                     FlyingObject fo = go.GetComponent<FlyingObject>();// get real object from unity  
                     fo.SetFactory(objectFactory);
                     fo.ReclaimByTime();
+		    index++;
                 }
             }
-
-
         }
     }
 }

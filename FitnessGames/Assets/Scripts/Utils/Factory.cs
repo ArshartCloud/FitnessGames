@@ -5,7 +5,7 @@ using UnityEngine;
 public class Factory : MonoBehaviour
 {
     [Tooltip("The template of gameObject")]
-    public GameObject prefab;
+    public GameObject[] prefabs;
 
     Stack<GameObject> pool = new Stack<GameObject>();
 
@@ -22,6 +22,7 @@ public class Factory : MonoBehaviour
         }
         else
         {
+            GameObject prefab = prefabs[Random.Range(0, prefabs.Length)];
             go = Instantiate(prefab);
         }
         go.SetActive(true);
