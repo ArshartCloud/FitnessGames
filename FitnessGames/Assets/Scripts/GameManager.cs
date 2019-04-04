@@ -11,6 +11,12 @@ public class GameManager : MonoBehaviour {
         OnMenu,
     };
 
+    public enum GameMode
+    {
+        Twist,
+        ArmRaise
+    }
+
     //Static instance of GameManager which allows it to be accessed by any other script.
     public static GameManager instance = null;
 
@@ -32,6 +38,8 @@ public class GameManager : MonoBehaviour {
     [Tooltip("TextMeshPro that show information")]
     public TextMeshPro textBoard;
 
+    [Tooltip("Game Mode")]
+    public GameMode gameMode;
     //[Tooltip("Way to continue")]
     //public CommonButton[] continueButtons;
 
@@ -105,19 +113,22 @@ public class GameManager : MonoBehaviour {
             }
         }
 
-        float distance = Vector3.Distance(leftHand.transform.position, rightHand.transform.position);
-        if (distance < minimumDistance)
+        if (gameMode == GameMode.Twist)
         {
-            textBoard.SetText("Please open your arms");
-            textBoard.gameObject.SetActive(true);
-            if (state == GameState.Playing)
-                GamePause();
-        } else
-        {
-            textBoard.gameObject.SetActive(false);
+            float distance = Vector3.Distance(leftHand.transform.position, rightHand.transform.position);
+            if (distance < minimumDistance)
+            {
+                textBoard.SetText("Please open your arms");
+                textBoard.gameObject.SetActive(true);
+                if (state == GameState.Playing)
+                    GamePause();
+            }
+            else
+            {
+                textBoard.gameObject.SetActive(false);
+            }
         }
     }
-
 
     void FixedUpdate()
     {
