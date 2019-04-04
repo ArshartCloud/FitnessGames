@@ -1803,6 +1803,7 @@ MonoBehaviour:
   left: {fileID: 1000011951144926}
   right: {fileID: 1000010598465114}
   objects: []
+  assignAllBeforeIdentified: 0
 --- !u!114 &114000010258508774
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1843,7 +1844,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   origin: {fileID: 0}
-  isValid: 0
 --- !u!114 &114000010435013178
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1921,11 +1921,7 @@ MonoBehaviour:
   drawWireframeWhenSelectedOnly: 0
   drawInGame: 0
   size: 0
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
+  color: {r: 0, g: 1, b: 1, a: 1}
   vertices:
   - {x: 1.3999999, y: 0.01, z: -1.3999999}
   - {x: -1.3999999, y: 0.01, z: -1.3999999}
@@ -2130,7 +2126,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: -1
   origin: {fileID: 0}
-  isValid: 0
 --- !u!114 &114000012564406658
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2239,7 +2234,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: -1
   origin: {fileID: 0}
-  isValid: 0
 --- !u!124 &124000011328792016
 Behaviour:
   m_ObjectHideFlags: 1
