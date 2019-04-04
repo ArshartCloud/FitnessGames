@@ -96,10 +96,12 @@ public class VirtualHand : Affect {
                 FlyingObject fo = trigger.GetComponent<FlyingObject>();
                 if (fo != null)
                 {
+                    // asteroid
                     if (fo.breakable)
                     {
                         fo.Explode();
                     }
+                    // space ship
                     else
                     {
                         fo.Shine();
@@ -137,7 +139,6 @@ public class VirtualHand : Affect {
     //{
     //    print("leave");
     //}
-
     //       // If state is open
     //       if (state == VirtualHandState.Open) {
 
