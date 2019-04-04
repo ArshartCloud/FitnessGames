@@ -69,7 +69,14 @@ public class MenuHand : MonoBehaviour {
                 GameObject go = hand.ongoingTriggers[0].gameObject;
                 if (go.tag == "Button")
                 {
-                    SceneManager.LoadScene(go.name, LoadSceneMode.Single);
+                    if(go.name == "Exit")
+                    {
+                        Application.Quit();
+                    }
+                    else {
+                        SceneManager.LoadScene(go.name, LoadSceneMode.Single);
+                    }
+                    
                 }
 
             }
