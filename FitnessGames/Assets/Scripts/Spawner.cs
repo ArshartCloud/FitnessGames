@@ -50,11 +50,11 @@ public class Spawner : MonoBehaviour
 	void Update () {
         if (Time.time - lastSpawnTime > timeGap)
         {
-            Factory objectFactory = spaceShipFactorys[Random.Range(0, spaceShipFactorys.Length)];
             if (state == SpawnerState.Twist)
             {
                 if (step == 0)
                 {
+                    Factory objectFactory = spaceShipFactorys[Random.Range(0, spaceShipFactorys.Length)];
                     step++;
                     float x = spaceShipWidth;
                     lastSpawnTime = Time.time;
@@ -79,7 +79,7 @@ public class Spawner : MonoBehaviour
                 } else
                 {
                     step = 0;
-                    objectFactory = asteroidFactory;
+                    Factory objectFactory = asteroidFactory;
                     lastSpawnTime = Time.time;
                     GameObject go = objectFactory.Create();
                     go.GetComponent<Rigidbody>().velocity = objectSpeed * movingDirection;
@@ -102,6 +102,7 @@ public class Spawner : MonoBehaviour
                 }
             } else if (state == SpawnerState.ArmRaise)
             {
+                Factory objectFactory = asteroidFactory;
                 // fix number
                 if (spawnPoints.Length < SpawnNumber)
                 {
