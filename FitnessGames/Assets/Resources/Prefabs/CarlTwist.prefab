@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 4020308165544270}
   - component: {fileID: 143764251572735664}
   m_Layer: 0
-  m_Name: Player
+  m_Name: CarlTwist
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

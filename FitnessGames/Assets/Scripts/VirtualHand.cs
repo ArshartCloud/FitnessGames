@@ -96,17 +96,7 @@ public class VirtualHand : Affect {
                 FlyingObject fo = trigger.GetComponent<FlyingObject>();
                 if (fo != null)
                 {
-                    // asteroid
-                    if (fo.breakable)
-                    {
-                        fo.Explode();
-                    }
-                    // space ship
-                    else
-                    {
-                        fo.Shine();
-                    }
-                    GameManager.instance.ChangeScore(fo.score);
+                    GameManager.instance.HitObject(fo);
                 }
             }
         }
