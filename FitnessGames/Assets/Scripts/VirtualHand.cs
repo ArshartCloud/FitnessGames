@@ -27,56 +27,7 @@ using UnityEngine;
 using System.Collections;
 
 public class VirtualHand : Affect {
-	
-	// Enumerate states of virtual hand interactions
-	public enum VirtualHandState {
-        Playing,
-        OnMenu
-	};
 
-	//// Inspector parameters
-	//[Tooltip("The tracking device used for tracking the real hand.")]
-	//public CommonTracker tracker;
-
-	//[Tooltip("The interactive used to represent the virtual hand.")]
-	//public Affect hand;
-    
-    [Tooltip("Way to pause")]
-    public CommonButton pauseButton;
-
-    [Tooltip("Way to continue")]
-    public CommonButton continueButton;
-    
-	// Private interaction variables
-	VirtualHandState state;
-
-    //// Called at the end of the program initialization
-    //void Start () {
-    //	// Set initial state to open
-    //	state = VirtualHandState.Playing;
-    //	// Ensure hand interactive is properly configured
-    //	//hand.type = AffectType.Virtual;
-    //}
-    //private void Update()
-    //{
-    //    if (pauseButton.GetPressDown())
-    //    {
-    //        if (state == VirtualHandState.Playing)
-    //        {
-    //            state = VirtualHandState.OnMenu;
-    //            GameManager.instance.GamePause();
-    //        }
-
-    //    }
-    //    else if(continueButton.GetPressDown())
-    //    {
-    //    if (state == VirtualHandState.OnMenu)
-    //        {
-    //            state = VirtualHandState.Playing;
-    //            GameManager.instance.GameContinue();
-    //        }
-    //    }
-    //}
     protected override void OnTriggerEnter(Collider trigger)
     {
 

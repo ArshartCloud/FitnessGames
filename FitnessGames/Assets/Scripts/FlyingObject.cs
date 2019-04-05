@@ -117,6 +117,7 @@ public class FlyingObject : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+        //print(GetComponent<Rigidbody>().angularVelocity);
 		if (Time.time - startTime > liveTime)
         {
             Reclaim();

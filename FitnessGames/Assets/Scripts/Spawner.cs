@@ -6,8 +6,8 @@ public class Spawner : MonoBehaviour
 {
     public enum SpawnerState
     {
-        Fruit,
-        Wall
+        ArmRaise,
+        Twist
     }
 
     [Tooltip("The object Spawn each time")]
@@ -27,8 +27,11 @@ public class Spawner : MonoBehaviour
 
     public SpawnerState state;
 
+    public float spaceShipWidth = 1f;
+
     Vector3 movingDirection = new Vector3(0, 0, -1);
     float lastSpawnTime;
+    int step = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -40,9 +43,9 @@ public class Spawner : MonoBehaviour
         if (Time.time - lastSpawnTime > timeGap)
         {
             Factory objectFactory = objectFactorys[Random.Range(0, objectFactorys.Length)];
-            if (state == SpawnerState.Wall)
+            if (state == SpawnerState.Twist)
             {
-                float x = 1.0f;
+                float x = spaceShipWidth;
                 lastSpawnTime = Time.time;
                 GameObject go = objectFactory.Create();
                 go.GetComponent<Rigidbody>().velocity = objectSpeed * movingDirection;
@@ -51,7 +54,8 @@ public class Spawner : MonoBehaviour
                 FlyingObject fo = go.GetComponent<FlyingObject>();// get real object from unity  
                 fo.SetFactory(objectFactory);
                 fo.ReclaimByTime();
-                
+                go.transform.SetParent(GameObject.Find("World").transform, true);
+
                 go = objectFactory.Create();
                 go.GetComponent<Rigidbody>().velocity = objectSpeed * movingDirection;
                 go.transform.position = wallspawnPoint.position + new Vector3(-x, 0.0f, 0.0f);
@@ -59,15 +63,24 @@ public class Spawner : MonoBehaviour
                 fo = go.GetComponent<FlyingObject>();// get real object from unity  
                 fo.SetFactory(objectFactory);
                 fo.ReclaimByTime();
-            } else if (state == SpawnerState.Fruit)
+                go.transform.SetParent(GameObject.Find("World").transform, true);
+                go.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+            } else if (state == SpawnerState.ArmRaise)
             {
                 // fix number
                 if (spawnPoints.Length < SpawnNumber)
                 {
                     return;
                 }
-                int index = Random.Range(0, spawnPoints.Length / SpawnNumber);
-		index *= SpawnNumber;
+                //int index = Random.Range(0, spawnPoints.Length / SpawnNumber);
+                //index *= SpawnNumber;
+                int index = 2;
+                if (step == 0) step++;
+                else
+                {
+                    step = 0;
+                    index = 0;
+                }
                 for (int i = 0; i < SpawnNumber; i++)
                 {
                     lastSpawnTime = Time.time;
@@ -79,7 +92,7 @@ public class Spawner : MonoBehaviour
                     FlyingObject fo = go.GetComponent<FlyingObject>();// get real object from unity  
                     fo.SetFactory(objectFactory);
                     fo.ReclaimByTime();
-		    index++;
+		            index++;
                 }
             }
         }

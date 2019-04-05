@@ -48,6 +48,9 @@ public class GameManager : MonoBehaviour {
 
     [Tooltip("Game Mode")]
     public GameMode gameMode;
+
+    [Tooltip("Sound of Button click (pause/skip)")]
+    public AudioSource buttonClickSound;
     //[Tooltip("Way to continue")]
     //public CommonButton[] continueButtons;
 
@@ -93,18 +96,18 @@ public class GameManager : MonoBehaviour {
 
     public void HitObject(FlyingObject fo)
     {
-
         // asteroid
         if (fo.breakable)
         {
             fo.Explode();
+            ChangeScore(fo.score);
+            //rint("Add score" + fo.score.ToString());
         }
         // space ship
         else
         {
             fo.Shine();
         }
-        ChangeScore(fo.score);
     }
 
     // Use this for initialization
@@ -145,7 +148,8 @@ public class GameManager : MonoBehaviour {
         }
         if (pauseButtonOnClick)
         {
-         //   print("click");
+            //   print("click");
+            buttonClickSound.Play();
             pauseButtonOnClick = false;
             if (state == GameState.Playing)
             {
@@ -158,6 +162,7 @@ public class GameManager : MonoBehaviour {
             }
         } else if (skipButtonOnClick)
         {
+            buttonClickSound.Play();
             skipButtonOnClick = false;
             if (state == GameState.Training)
             {
@@ -195,10 +200,15 @@ public class GameManager : MonoBehaviour {
     {
         textBoard.gameObject.SetActive(false);
         Destroy(TrainingCarl);
+        state = GameState.Playing;
     }
 
     void ChangeScore(int delta)
     {
         scoreSystem.ChangeScore(delta);
+        if (scoreSystem.score >= 12 && state == GameState.Training)
+        {
+            TrainingEnd();
+        }
     }
 }

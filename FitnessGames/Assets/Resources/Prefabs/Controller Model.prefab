@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 23937166574151678}
   - component: {fileID: 136802611979750262}
   - component: {fileID: 54302419290250896}
-  - component: {fileID: 114060218098507372}
+  - component: {fileID: 114861685215776526}
   m_Layer: 0
   m_Name: Controller Model
   m_TagString: Untagged
@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1946654052804480}
   m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 0, y: 0, z: 0.134}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -101,7 +101,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114060218098507372
+--- !u!114 &114861685215776526
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,8 +115,6 @@ MonoBehaviour:
   shape: 6
   type: 0
   interactivesOnly: 1
-  pauseButton: {fileID: 0}
-  continueButton: {fileID: 0}
 --- !u!136 &136802611979750262
 CapsuleCollider:
   m_ObjectHideFlags: 1

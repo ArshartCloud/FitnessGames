@@ -26,6 +26,12 @@ public class Factory : MonoBehaviour
             go = Instantiate(prefab);
         }
         go.SetActive(true);
+        Rigidbody rb = go.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+        }
         return go;
     }
 
@@ -37,13 +43,6 @@ public class Factory : MonoBehaviour
     {
         pool.Push(go);
         go.transform.position = new Vector3(1000, 1000, 1000);
-        //Reset speed
-        Rigidbody rb = go.GetComponent<Rigidbody>();
-        if (rb != null)
-        {
-            rb.velocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
-        }
         go.SetActive(false);
     }
 }

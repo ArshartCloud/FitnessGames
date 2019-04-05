@@ -139,6 +139,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   liveTime: 20
-  breakable: 1
-  score: -1
+  breakable: 0
+  score: 1
   state: 0
