@@ -6,7 +6,7 @@ public class Spawner : MonoBehaviour
 {
     public enum SpawnerState
     {
-        Fruit,
+        Asteroid,
         Wall
     }
 
@@ -43,18 +43,16 @@ public class Spawner : MonoBehaviour
             if (state == SpawnerState.Wall)
             {
                 lastSpawnTime = Time.time;
+                float x = .8f;
                 GameObject go = objectFactory.Create();
                 go.GetComponent<Rigidbody>().velocity = objectSpeed * movingDirection;
-                float x = Random.Range(0.5f, 2.0f);
-                //print(x);
+                //float x = Random.Range(0.5f, 2.0f);
                 go.transform.position = wallspawnPoint.position + new Vector3(x, 0.0f, 0.0f);
-                //print(go.transform.position);
                 go.transform.rotation = wallspawnPoint.rotation;
                 FlyingObject fo = go.GetComponent<FlyingObject>();// get real object from unity  
                 fo.SetFactory(objectFactory);
                 fo.ReclaimByTime();
-
-                lastSpawnTime = Time.time;
+                
                 go = objectFactory.Create();
                 go.GetComponent<Rigidbody>().velocity = objectSpeed * movingDirection;
                 go.transform.position = wallspawnPoint.position + new Vector3(-x, 0.0f, 0.0f);
@@ -62,7 +60,7 @@ public class Spawner : MonoBehaviour
                 fo = go.GetComponent<FlyingObject>();// get real object from unity  
                 fo.SetFactory(objectFactory);
                 fo.ReclaimByTime();
-            } else if (state == SpawnerState.Fruit)
+            } else if (state == SpawnerState.Asteroid)
             {
                 // fix number
                 if (spawnPoints.Length <= SpawnNumber)
