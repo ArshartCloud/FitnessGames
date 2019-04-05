@@ -42,19 +42,16 @@ public class Spawner : MonoBehaviour
             Factory objectFactory = objectFactorys[Random.Range(0, objectFactorys.Length)];
             if (state == SpawnerState.Wall)
             {
+                float x = 1.0f;
                 lastSpawnTime = Time.time;
                 GameObject go = objectFactory.Create();
                 go.GetComponent<Rigidbody>().velocity = objectSpeed * movingDirection;
-                float x = Random.Range(0.5f, 2.0f);
-                //print(x);
                 go.transform.position = wallspawnPoint.position + new Vector3(x, 0.0f, 0.0f);
-                //print(go.transform.position);
                 go.transform.rotation = wallspawnPoint.rotation;
                 FlyingObject fo = go.GetComponent<FlyingObject>();// get real object from unity  
                 fo.SetFactory(objectFactory);
                 fo.ReclaimByTime();
-
-                lastSpawnTime = Time.time;
+                
                 go = objectFactory.Create();
                 go.GetComponent<Rigidbody>().velocity = objectSpeed * movingDirection;
                 go.transform.position = wallspawnPoint.position + new Vector3(-x, 0.0f, 0.0f);
