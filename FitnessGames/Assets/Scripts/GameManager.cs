@@ -21,9 +21,7 @@ public class GameManager : MonoBehaviour {
 
     //Static instance of GameManager which allows it to be accessed by any other script.
     public static GameManager instance = null;
-
-    [Tooltip("Score System to calculate score")]
-    public ScoreSystem scoreSystem;
+    
 
     [Tooltip("Way to pause")]
     public CommonButton[] pauseButtons;
@@ -51,11 +49,15 @@ public class GameManager : MonoBehaviour {
 
     [Tooltip("Sound of Button click (pause/skip)")]
     public AudioSource buttonClickSound;
+
     //[Tooltip("Way to continue")]
     //public CommonButton[] continueButtons;
 
     // Private interaction variables
+    Spawner spawner;
+    ScoreSystem scoreSystem;
     GameState state;
+    int speedLevel = 1;
     bool pauseButtonOnClick = false;
     bool skipButtonOnClick = false;
     bool buttonDown = false;
@@ -78,10 +80,12 @@ public class GameManager : MonoBehaviour {
     public void GamePause()
     {
         Time.timeScale = 0;
+        textBoard.SetText("Press <Menu button> to Continue\nPress <trigger> to Exit");
     }
     public void GameContinue()
     {
         Time.timeScale = 1;
+        textBoard.SetText("Press <Menu Button> to Pause");
     }
 
     public void MissObject(FlyingObject fo)
@@ -112,6 +116,8 @@ public class GameManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        spawner = GetComponent<Spawner>();
+        scoreSystem = GetComponent<ScoreSystem>();
     }
 
     // Update is called once per frame
@@ -198,7 +204,7 @@ public class GameManager : MonoBehaviour {
 
     void TrainingEnd()
     {
-        textBoard.gameObject.SetActive(false);
+        textBoard.SetText("Press <Menu Button> to Pause");
         Destroy(TrainingCarl);
         state = GameState.Playing;
     }
@@ -210,5 +216,6 @@ public class GameManager : MonoBehaviour {
         {
             TrainingEnd();
         }
+        if (scoreSystem.score > speedLevel * 100) spawner.objectSpeed += 1;
     }
 }
