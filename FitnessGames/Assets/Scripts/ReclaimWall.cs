@@ -24,11 +24,7 @@ public class ReclaimWall : Affect {
                 FlyingObject fo = trigger.gameObject.GetComponent<FlyingObject>();
                 if (fo != null)
                 {
-                    if (fo.state == FlyingObject.FlyingObjectState.Untouched)
-                    {
-                        GameManager.instance.ChangeScore(-fo.score);
-                    }
-                    fo.Reclaim();
+                    GameManager.instance.MissObject(fo);
                 }
 
             }
