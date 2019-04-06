@@ -57,10 +57,12 @@ public class GameManager : MonoBehaviour {
     Spawner spawner;
     ScoreSystem scoreSystem;
     GameState state;
+    AudioSource hitSound;
     int speedLevel = 1;
     bool pauseButtonOnClick = false;
     bool skipButtonOnClick = false;
-    bool buttonDown = false;
+    bool pauseButtonDown = false;
+    bool skipButtonDown = false;
 
     //Awake is always called before any Start functions
     void Awake()
@@ -75,6 +77,7 @@ public class GameManager : MonoBehaviour {
             //Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of a GameManager.
             print("\n\nWarning! Multiple GameManager!\n\n");
         //textBoard.gameObject.SetActive(false);
+        hitSound = GameObject.Find("HitSound").GetComponent<AudioSource>();
     }
 
     public void GamePause()
@@ -104,6 +107,7 @@ public class GameManager : MonoBehaviour {
         if (fo.breakable)
         {
             fo.Explode();
+            hitSound.Play();
             ChangeScore(fo.score);
             //rint("Add score" + fo.score.ToString());
         }
@@ -129,13 +133,13 @@ public class GameManager : MonoBehaviour {
             if (button.GetPressDown())
             {
                 buttonPress = true;
-                buttonDown = true;
+                pauseButtonDown = true;
             }
         }
-        if (!buttonPress && buttonDown)
+        if (!buttonPress && pauseButtonDown)
         {
             pauseButtonOnClick = true;
-            buttonDown = false;
+            pauseButtonDown = false;
         }
         buttonPress = false;
         //TODO test skip+pause
@@ -144,13 +148,13 @@ public class GameManager : MonoBehaviour {
             if (button.GetPressDown())
             {
                 buttonPress = true;
-                buttonDown = true;
+                skipButtonDown = true;
             }
         }
-        if (!buttonPress && buttonDown)
+        if (!buttonPress && skipButtonDown)
         {
             skipButtonOnClick = true;
-            buttonDown = false;
+            skipButtonDown = false;
         }
         if (pauseButtonOnClick)
         {

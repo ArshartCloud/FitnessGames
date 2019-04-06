@@ -39,11 +39,13 @@ public class Spawner : MonoBehaviour
 
     Vector3 movingDirection = new Vector3(0, 0, -1);
     float lastSpawnTime;
-    int step = 0;
+    int step = 0;  // each step for spawning
+    Transform world;  // the parent for spawning object
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         lastSpawnTime = Time.time;
+        world = GameObject.Find("World").transform;
     }
 	
 	// Update is called once per frame
@@ -65,7 +67,7 @@ public class Spawner : MonoBehaviour
                     FlyingObject fo = go.GetComponent<FlyingObject>();// get real object from unity  
                     fo.SetFactory(objectFactory);
                     fo.ReclaimByTime();
-                    go.transform.SetParent(GameObject.Find("World").transform, true);
+                    go.transform.SetParent(world, true);
 
                     go = objectFactory.Create();
                     go.GetComponent<Rigidbody>().velocity = objectSpeed * movingDirection;
@@ -74,7 +76,7 @@ public class Spawner : MonoBehaviour
                     fo = go.GetComponent<FlyingObject>();// get real object from unity  
                     fo.SetFactory(objectFactory);
                     fo.ReclaimByTime();
-                    go.transform.SetParent(GameObject.Find("World").transform, true);
+                    go.transform.SetParent(world, true);
                     go.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
                 } else
                 {
@@ -88,7 +90,7 @@ public class Spawner : MonoBehaviour
                     FlyingObject fo = go.GetComponent<FlyingObject>();// get real object from unity  
                     fo.SetFactory(objectFactory);
                     fo.ReclaimByTime();
-                    go.transform.SetParent(GameObject.Find("World").transform, true);
+                    go.transform.SetParent(world, true);
 
                     go = objectFactory.Create();
                     go.GetComponent<Rigidbody>().velocity = objectSpeed * movingDirection;
@@ -97,7 +99,7 @@ public class Spawner : MonoBehaviour
                     fo = go.GetComponent<FlyingObject>();// get real object from unity  
                     fo.SetFactory(objectFactory);
                     fo.ReclaimByTime();
-                    go.transform.SetParent(GameObject.Find("World").transform, true);
+                    go.transform.SetParent(world, true);
                     go.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
                 }
             } else if (state == SpawnerState.ArmRaise)
@@ -121,7 +123,7 @@ public class Spawner : MonoBehaviour
                 {
                     lastSpawnTime = Time.time;
                     GameObject go = objectFactory.Create();
-                    go.transform.SetParent(GameObject.Find("World").transform, true);
+                    go.transform.SetParent(world, true);
                     go.GetComponent<Rigidbody>().velocity = objectSpeed * movingDirection;
                     go.transform.position = spawnPoints[index].position;
                     go.transform.rotation = spawnPoints[index].rotation;
