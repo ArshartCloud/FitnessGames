@@ -83,12 +83,12 @@ public class GameManager : MonoBehaviour {
     public void GamePause()
     {
         Time.timeScale = 0;
-        textBoard.SetText("Press <Menu button> to Continue\nPress <trigger> to Exit");
+        state = GameState.OnMenu;
     }
     public void GameContinue()
     {
         Time.timeScale = 1;
-        textBoard.SetText("Press <Menu Button> to Pause");
+        state = GameState.Playing;
     }
 
     public void MissObject(FlyingObject fo)
@@ -163,11 +163,9 @@ public class GameManager : MonoBehaviour {
             pauseButtonOnClick = false;
             if (state == GameState.Playing)
             {
-                state = GameState.OnMenu;
                 GamePause();
             } else if (state == GameState.OnMenu)
             {
-                state = GameState.Playing;
                 GameContinue();
             }
         } else if (skipButtonOnClick)
@@ -176,7 +174,6 @@ public class GameManager : MonoBehaviour {
             skipButtonOnClick = false;
             if (state == GameState.Training)
             {
-                state = GameState.Playing;
                 TrainingEnd();
             } else if (state == GameState.OnMenu)
             {
@@ -196,7 +193,7 @@ public class GameManager : MonoBehaviour {
             }
             else
             {
-                textBoard.gameObject.SetActive(false);
+                UpdateText();
             }
         }
     }
@@ -208,9 +205,9 @@ public class GameManager : MonoBehaviour {
 
     void TrainingEnd()
     {
-        textBoard.SetText("Press <Menu Button> to Pause");
         Destroy(TrainingCarl);
         state = GameState.Playing;
+        UpdateText();
     }
 
     void ChangeScore(int delta)
@@ -221,5 +218,25 @@ public class GameManager : MonoBehaviour {
             TrainingEnd();
         }
         if (scoreSystem.score > speedLevel * 100) spawner.objectSpeed += 1;
+    }
+
+    void UpdateText()
+    {
+        if (state == GameState.Training)
+        {
+            if (gameMode == GameMode.ArmRaise)
+            {
+                textBoard.SetText("Armraise");
+            } else if (gameMode == GameMode.Twist)
+            {
+                textBoard.SetText("Please follow the animation and raise your arm");
+            }
+        } else if (state == GameState.Playing)
+        {
+            textBoard.SetText("Press <Menu Button> to Pause");
+        } else if (state == GameState.OnMenu)
+        {
+            textBoard.SetText("Press <Menu button> to Continue\nPress <trigger> to Exit");
+        }
     }
 }

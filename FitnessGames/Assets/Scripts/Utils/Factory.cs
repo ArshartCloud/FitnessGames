@@ -16,15 +16,15 @@ public class Factory : MonoBehaviour
     public GameObject Create()
     {
         GameObject go;
-        if (pool.Count > 0)
-        {
-            go = pool.Pop();
-        }
-        else
+        if (pool.Count == 0)
         {
             GameObject prefab = prefabs[Random.Range(0, prefabs.Length)];
-            go = Instantiate(prefab);
+            GameObject pre = Instantiate(prefab);
+            pre.SetActive(false);
+            Reclaim(pre);
+            //go = Instantiate(prefab);
         }
+        go = pool.Pop();
         go.SetActive(true);
         Rigidbody rb = go.GetComponent<Rigidbody>();
         if (rb != null)

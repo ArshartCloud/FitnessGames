@@ -36,6 +36,10 @@ public class FlyingObject : MonoBehaviour {
     /// </summary>
     Factory factory;
     bool isReclaim = false;
+    // TO fix some very wired bug
+    Vector3 velocity = Vector3.back;
+    Vector3 angularVelocity = Vector3.zero;
+
 
     private void Start()
     {
@@ -45,11 +49,15 @@ public class FlyingObject : MonoBehaviour {
             rb.AddExplosionForce(10.0f, transform.position, 5.0f, 3.0F);
     }
 
+    public void SetSpeed(Vector3 speed)
+    {
+        velocity = speed;
+    }
+
     public void Init()
     {
         state = FlyingObjectState.Untouched;
         this.enabled = true;
-	isReclaim = true;
     }
 
     /// <summary>
@@ -57,6 +65,7 @@ public class FlyingObject : MonoBehaviour {
     /// </summary>
     public void ReclaimByTime()
     {
+        isReclaim = true;
         startTime = Time.time;
         Init();
     }
@@ -66,6 +75,7 @@ public class FlyingObject : MonoBehaviour {
     /// </summary>
     public void ReclaimByTime(float time)
     {
+        isReclaim = true;
         liveTime = time;
         startTime = Time.time;
         Init();
@@ -85,11 +95,11 @@ public class FlyingObject : MonoBehaviour {
     /// </summary>
     public void Reclaim()
     {
-	if (isReclaim) {
-		isReclaim = false;
+	    if (isReclaim) {
+		    isReclaim = false;
         	factory.Reclaim(gameObject);
         	this.enabled = false;
-	}
+	    }
     }
 
     /// <summary>
@@ -122,5 +132,10 @@ public class FlyingObject : MonoBehaviour {
         {
             Reclaim();
         }
-	}
+
+        // to fix some bug
+        Rigidbody rb = GetComponent<Rigidbody>();
+        rb.velocity = velocity;
+        rb.angularVelocity = angularVelocity;
+    }
 }
