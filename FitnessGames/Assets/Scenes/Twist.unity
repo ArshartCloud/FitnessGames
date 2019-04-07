@@ -2564,7 +2564,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Please follow the animation and raise your arm
+  m_text: Some Text Here
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2632,12 +2632,12 @@ MonoBehaviour:
   m_margin: {x: 8.581616, y: 1.9876049, z: 6.883876, w: 1.952192}
   m_textInfo:
     textComponent: {fileID: 1189355261}
-    characterCount: 46
+    characterCount: 14
     spriteCount: 0
-    spaceCount: 7
-    wordCount: 8
+    spaceCount: 2
+    wordCount: 3
     linkCount: 0
-    lineCount: 2
+    lineCount: 1
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 0

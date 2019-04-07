@@ -78,6 +78,7 @@ public class GameManager : MonoBehaviour {
             print("\n\nWarning! Multiple GameManager!\n\n");
         //textBoard.gameObject.SetActive(false);
         hitSound = GameObject.Find("HitSound").GetComponent<AudioSource>();
+        UpdateText();
     }
 
     public void GamePause()
@@ -226,10 +227,10 @@ public class GameManager : MonoBehaviour {
         {
             if (gameMode == GameMode.ArmRaise)
             {
-                textBoard.SetText("Armraise");
+                textBoard.SetText("Raise and Lower Your Arms\nPress <Trigger> to Skip Training");
             } else if (gameMode == GameMode.Twist)
             {
-                textBoard.SetText("Please follow the animation and raise your arm");
+                textBoard.SetText("Twist your Arms\nPress <Trigger> to Skip Training");
             }
         } else if (state == GameState.Playing)
         {
