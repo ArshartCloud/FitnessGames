@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -82,6 +82,7 @@ public class GameManager : MonoBehaviour {
     {
         Time.timeScale = 0;
         state = GameState.OnMenu;
+	   UpdateText();
     }
     public void GameContinue()
     {
@@ -128,6 +129,20 @@ public class GameManager : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        if (gameMode == GameMode.Twist)
+        {
+            float distance = Vector3.Distance(leftHand.transform.position, rightHand.transform.position);
+            if (distance < minimumDistance && state == GameState.Playing)
+            {
+                ArmPause();
+            }
+            else
+            {
+                //UpdateText();
+            }
+        }
+
+
         bool buttonPress = false;
         foreach (CommonButton button in pauseButtons)
         {
@@ -182,28 +197,17 @@ public class GameManager : MonoBehaviour {
             }
         }
 
-        if (gameMode == GameMode.Twist)
-        {
-            float distance = Vector3.Distance(leftHand.transform.position, rightHand.transform.position);
-            if (distance < minimumDistance && state == GameState.Playing)
-            {
-                ArmPause();
-            }
-            else
-            {
-                //UpdateText();
-            }
-        }
     }
 
     void ArmPause()
     {
-        textBoard.SetText("Please open your arms");
         GamePause();
+        textBoard.SetText("Please open your arms and press <Menu Button> to continue");
     }
 
     void ReturnToMenu()
     {
+	   GameContinue();
         SceneManager.LoadScene("Menu", LoadSceneMode.Single);
     }
 
@@ -221,7 +225,10 @@ public class GameManager : MonoBehaviour {
         {
             TrainingEnd();
         }
-        if (scoreSystem.score > speedLevel * 100) spawner.objectSpeed += 1;
+        if (scoreSystem.score > speedLevel * 100) {
+spawner.objectSpeed += 1;
+speedLevel++;
+}
     }
 
     void UpdateText()
