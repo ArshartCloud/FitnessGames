@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -82,7 +82,6 @@ public class GameManager : MonoBehaviour {
     {
         Time.timeScale = 0;
         state = GameState.OnMenu;
-	   UpdateText();
     }
     public void GameContinue()
     {
@@ -205,7 +204,6 @@ public class GameManager : MonoBehaviour {
 
     void ReturnToMenu()
     {
-	   GameContinue();
         SceneManager.LoadScene("Menu", LoadSceneMode.Single);
     }
 
