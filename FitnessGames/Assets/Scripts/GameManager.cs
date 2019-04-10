@@ -67,7 +67,6 @@ public class GameManager : MonoBehaviour {
     //Awake is always called before any Start functions
     void Awake()
     {
-        state = GameState.Training;
         //Check if instance already exists
         if (instance == null)
             //if not, set instance to this
@@ -77,8 +76,6 @@ public class GameManager : MonoBehaviour {
             //Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of a GameManager.
             print("\n\nWarning! Multiple GameManager!\n\n");
         //textBoard.gameObject.SetActive(false);
-        hitSound = GameObject.Find("HitSound").GetComponent<AudioSource>();
-        UpdateText();
     }
 
     public void GamePause()
@@ -123,6 +120,9 @@ public class GameManager : MonoBehaviour {
     void Start () {
         spawner = GetComponent<Spawner>();
         scoreSystem = GetComponent<ScoreSystem>();
+        state = GameState.Training;
+        hitSound = GameObject.Find("HitSound").GetComponent<AudioSource>();
+        UpdateText();
     }
 
     // Update is called once per frame
@@ -185,18 +185,21 @@ public class GameManager : MonoBehaviour {
         if (gameMode == GameMode.Twist)
         {
             float distance = Vector3.Distance(leftHand.transform.position, rightHand.transform.position);
-            if (distance < minimumDistance)
+            if (distance < minimumDistance && state == GameState.Playing)
             {
-                textBoard.SetText("Please open your arms");
-                textBoard.gameObject.SetActive(true);
-                if (state == GameState.Playing)
-                    GamePause();
+                ArmPause();
             }
             else
             {
-                UpdateText();
+                //UpdateText();
             }
         }
+    }
+
+    void ArmPause()
+    {
+        textBoard.SetText("Please open your arms");
+        GamePause();
     }
 
     void ReturnToMenu()

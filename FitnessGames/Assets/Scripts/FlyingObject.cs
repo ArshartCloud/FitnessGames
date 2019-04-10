@@ -120,7 +120,7 @@ public class FlyingObject : MonoBehaviour {
     public void Shine()
     {
         // add some animation here
-        GetComponent<AudioSource>().Play();
+        //GetComponent<AudioSource>().Play();
 
         state = FlyingObjectState.Touched;
     }
