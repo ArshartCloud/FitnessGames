@@ -353,7 +353,7 @@ GameObject:
   - component: {fileID: 4665899592565446}
   - component: {fileID: 95922052495722722}
   m_Layer: 0
-  m_Name: Carl
+  m_Name: CarlArmraise
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
