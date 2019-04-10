@@ -63,22 +63,24 @@ public class Spawner : MonoBehaviour
             } else if (state == SpawnerState.Asteroid)
             {
                 // fix number
-                if (spawnPoints.Length <= SpawnNumber)
+                if (spawnPoints.Length < SpawnNumber)
                 {
                     return;
                 }
                 int index = Random.Range(0, spawnPoints.Length / SpawnNumber);
-                for (int i = index * SpawnNumber; i < (index + 1) * SpawnNumber; i++)
+		index *= SpawnNumber;
+                for (int i = 0; i < SpawnNumber; i++)
                 {
                     lastSpawnTime = Time.time;
                     GameObject go = objectFactory.Create();
                     go.transform.SetParent(GameObject.Find("World").transform, true);
                     go.GetComponent<Rigidbody>().velocity = objectSpeed * movingDirection;
-                    go.transform.position = spawnPoints[i].position;
-                    go.transform.rotation = spawnPoints[i].rotation;
+                    go.transform.position = spawnPoints[index].position;
+                    go.transform.rotation = spawnPoints[index].rotation;
                     FlyingObject fo = go.GetComponent<FlyingObject>();// get real object from unity  
                     fo.SetFactory(objectFactory);
                     fo.ReclaimByTime();
+		    index++;
                 }
             }
         }

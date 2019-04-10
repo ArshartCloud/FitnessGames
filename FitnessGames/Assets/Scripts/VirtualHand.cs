@@ -96,15 +96,7 @@ public class VirtualHand : Affect {
                 FlyingObject fo = trigger.GetComponent<FlyingObject>();
                 if (fo != null)
                 {
-                    if (fo.breakable)
-                    {
-                        fo.Explode();
-                    }
-                    else
-                    {
-                        fo.Shine();
-                    }
-                    GameManager.instance.ChangeScore(fo.score);
+                    GameManager.instance.HitObject(fo);
                 }
             }
         }
@@ -137,7 +129,6 @@ public class VirtualHand : Affect {
     //{
     //    print("leave");
     //}
-
     //       // If state is open
     //       if (state == VirtualHandState.Open) {
 
