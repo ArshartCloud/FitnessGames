@@ -9,6 +9,7 @@ public class ScoreSystem : MonoBehaviour {
     public TextMeshPro tmpro;
 
     public int score { get; protected set; }
+    public int healthPoint { get; protected set; }
 
     public void ChangeScore(int delta)
     {
@@ -16,8 +17,14 @@ public class ScoreSystem : MonoBehaviour {
         TextUpdate();
     }
 
+    public void ChangeHealthPoint(int delta)
+    {
+        healthPoint += delta;
+        TextUpdate();
+    }
+
     private void TextUpdate()
     {
-        tmpro.SetText("Score: " + score.ToString());
+        tmpro.SetText("HP: " + healthPoint.ToString() + "\n" + "Score: " + score.ToString());
     }
 }

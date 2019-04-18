@@ -95,7 +95,9 @@ public class GameManager : MonoBehaviour {
         if (fo.state == FlyingObject.FlyingObjectState.Untouched)
         {
             if (fo.breakable == false)
-                GameManager.instance.ChangeScore(fo.score);
+                ChangeScore(fo.score);
+            else
+                ChangeHealthPoint(-1);
         }
         fo.Reclaim();
     }
@@ -114,6 +116,7 @@ public class GameManager : MonoBehaviour {
         else
         {
             fo.Shine();
+            ChangeHealthPoint(-1);
         }
     }
 
@@ -226,10 +229,21 @@ public class GameManager : MonoBehaviour {
             TrainingEnd();
         }
         if (scoreSystem.score > speedLevel * 100) {
-spawner.objectSpeed += 1;
-speedLevel++;
-}
+            spawner.objectSpeed += 1;
+            speedLevel++;
+        }
     }
+
+    void ChangeHealthPoint(int delta)
+    {
+        scoreSystem.ChangeHealthPoint(delta);
+        if (scoreSystem.healthPoint <= 0)
+        {
+            GameOver();
+        }
+    }
+
+    void GameOver() { }
 
     void UpdateText()
     {
