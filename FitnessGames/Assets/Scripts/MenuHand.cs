@@ -74,6 +74,7 @@ public class MenuHand : MonoBehaviour {
                         Application.Quit();
                     }
                     else {
+                        GameManager.gm = (GameMode)System.Enum.Parse(typeof(GameMode), go.name);
                         SceneManager.LoadScene(go.name, LoadSceneMode.Single);
                     }
                     

@@ -4,20 +4,23 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 
+public enum GameMode
+{
+    Twist,
+    ArmRaise,
+    Squat,
+    Mixed
+}
 public class GameManager : MonoBehaviour {
     // Enumerate states of virtual hand interactions
     public enum GameState
     {
         Training,
+        Counting,
         Playing,
         OnMenu,
     };
 
-    public enum GameMode
-    {
-        Twist,
-        ArmRaise
-    }
 
     //Static instance of GameManager which allows it to be accessed by any other script.
     public static GameManager instance = null;
@@ -54,6 +57,7 @@ public class GameManager : MonoBehaviour {
     //public CommonButton[] continueButtons;
 
     // Private interaction variables
+    static public GameMode gm;
     Spawner spawner;
     ScoreSystem scoreSystem;
     GameState state;
@@ -76,6 +80,7 @@ public class GameManager : MonoBehaviour {
             //Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of a GameManager.
             print("\n\nWarning! Multiple GameManager!\n\n");
         //textBoard.gameObject.SetActive(false);
+        
     }
 
     public void GamePause()
@@ -127,6 +132,9 @@ public class GameManager : MonoBehaviour {
         state = GameState.Training;
         hitSound = GameObject.Find("HitSound").GetComponent<AudioSource>();
         UpdateText();
+        //print(gm);
+        spawner.state = gm;
+        scoreSystem.ChangeHealthPoint(20);
     }
 
     // Update is called once per frame
@@ -144,8 +152,6 @@ public class GameManager : MonoBehaviour {
                 //UpdateText();
             }
         }
-
-
         bool buttonPress = false;
         foreach (CommonButton button in pauseButtons)
         {
