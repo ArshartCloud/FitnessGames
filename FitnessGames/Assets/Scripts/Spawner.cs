@@ -16,10 +16,10 @@ public class Spawner : MonoBehaviour
     public int SpawnNumber = 2;
     [Tooltip("The position for spawning, continus SpawnNumber position are fix order")]
     public Transform[] spawnPoints;
-
     public Transform wallspawnPoint;
-    public Transform squatzWallPoint;
+    public Transform squatWallPoint;
     public Transform suqatCoinPoint;
+
     [Tooltip("The speed of spawning object")]
     public float objectSpeed = 4.63f;
     //[Tooltip("The size of spawning object")]
@@ -41,10 +41,22 @@ public class Spawner : MonoBehaviour
     //[Tooltip("Parameters for twist")]
     //public float spaceShipWidth = 1f;
 
+    Vector3 userHeadPos;
     Vector3 movingDirection = new Vector3(0, 0, -1);
     float lastSpawnTime;
     int step = 0;  // each step for spawning
     Transform world;  // the parent for spawning object
+    bool spawnStart = false;
+
+    public void SetHeadPos(Vector3 pos)
+    {
+        userHeadPos = pos;
+    }
+
+    public void StartSpawn()
+    {
+        spawnStart = true;
+    }
 
     // Use this for initialization
     void Start () {
@@ -54,7 +66,7 @@ public class Spawner : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-        if (Time.time - lastSpawnTime > timeGap)
+        if (spawnStart && Time.time - lastSpawnTime > timeGap)
         {
             if (state == GameMode.Twist)
             {
@@ -113,7 +125,8 @@ public class Spawner : MonoBehaviour
                     //go.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
                     fo.SetSpeed(objectSpeed * movingDirection);
                 }
-            } else if (state == GameMode.ArmRaise)
+            }
+            else if (state == GameMode.ArmRaise)
             {
                 Factory objectFactory = asteroidFactory;
                 // fix number
@@ -159,21 +172,9 @@ public class Spawner : MonoBehaviour
                     //Rigidbody rb = go.GetComponent<Rigidbody>();
                     //rb.velocity = objectSpeed * movingDirection;
                     //rb.angularVelocity = Vector3.zero;
-                    go.transform.position = wallspawnPoint.position + new Vector3(x, 0.0f, 0.0f);
-                    go.transform.rotation = wallspawnPoint.rotation;
+                    go.transform.position = squatWallPoint.position + new Vector3(x, 0.0f, 0.0f);
+                    go.transform.rotation = squatWallPoint.rotation;
                     FlyingObject fo = go.GetComponent<FlyingObject>();// get real object from unity  
-                    fo.SetFactory(objectFactory);
-                    fo.ReclaimByTime();
-                    go.transform.SetParent(world, true);
-                    fo.SetSpeed(objectSpeed * movingDirection);
-
-                    go = objectFactory.Create();
-                    //rb = go.GetComponent<Rigidbody>();
-                    //rb.velocity = objectSpeed * movingDirection;
-                    //rb.angularVelocity = Vector3.zero;
-                    go.transform.position = wallspawnPoint.position + new Vector3(-x, 0.0f, 0.0f);
-                    go.transform.rotation = wallspawnPoint.rotation;
-                    fo = go.GetComponent<FlyingObject>();// get real object from unity  
                     fo.SetFactory(objectFactory);
                     fo.ReclaimByTime();
                     go.transform.SetParent(world, true);

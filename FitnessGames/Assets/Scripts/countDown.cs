@@ -13,7 +13,7 @@ public class countDown : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        countdownText = GetComponent<TextMeshPro>();
+        //countdownText = GetComponent<TextMeshPro>();
         currentTime = startingTime;
     }
 
