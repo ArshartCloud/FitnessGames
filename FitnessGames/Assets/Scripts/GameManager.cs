@@ -37,11 +37,11 @@ public class GameManager : MonoBehaviour {
     [Tooltip("Right controller (for twist)")]
     public GameObject rightHand;
 
-    [Tooltip("Way to pause")]
-    public CommonButton[] pauseButtons;
+    //[Tooltip("Way to pause")]
+    //public CommonButton[] pauseButtons;
 
-    [Tooltip("button to skip training and return to menu")]
-    public CommonButton[] skipButtons;
+    //[Tooltip("button to skip training and return to menu")]
+    //public CommonButton[] skipButtons;
 
     [Tooltip("TextMeshPro that show information")]
     public TextMeshPro textBoard;
@@ -61,6 +61,8 @@ public class GameManager : MonoBehaviour {
     [Tooltip("Distance check for twist")]
     public float maxCountingTime = 3f;
 
+    public float trainingTime = 1f;
+
     public TextMeshPro debug;
 
     //[Tooltip("Way to continue")]
@@ -73,10 +75,10 @@ public class GameManager : MonoBehaviour {
     GameState state;
     AudioSource hitSound;
     int speedLevel = 1;
-    bool pauseButtonOnClick = false;
-    bool skipButtonOnClick = false;
-    bool pauseButtonDown = false;
-    bool skipButtonDown = false;
+    //bool pauseButtonOnClick = false;
+    //bool skipButtonOnClick = false;
+    //bool pauseButtonDown = false;
+    //bool skipButtonDown = false;
     float currentTime = 0f;
 
     //Awake is always called before any Start functions
@@ -177,7 +179,7 @@ public class GameManager : MonoBehaviour {
         spawner.SetHeadPos(headTracker.position);
         state = GameState.Training;
         //state = GameState.Counting;
-        currentTime = 1f;
+        currentTime = trainingTime;
         TrainingCarl = Instantiate(Resources.Load("Prefabs/Animation/" + gameMode.ToString(), typeof(GameObject))) as GameObject;
     }
 
@@ -198,49 +200,49 @@ public class GameManager : MonoBehaviour {
                 //UpdateText();
             }
         }
-        // button check
-        {
-            bool buttonPress = false;
-            foreach (CommonButton button in pauseButtons)
-            {
-                if (button.GetPressDown())
-                {
-                    buttonPress = true;
-                    pauseButtonDown = true;
-                }
-            }
-            if (!buttonPress && pauseButtonDown)
-            {
-                pauseButtonOnClick = true;
-                pauseButtonDown = false;
-            }
-            buttonPress = false;
-            //TODO test skip+pause
-            foreach (CommonButton button in skipButtons)
-            {
-                if (button.GetPressDown())
-                {
-                    buttonPress = true;
-                    skipButtonDown = true;
-                }
-            }
-            if (!buttonPress && skipButtonDown)
-            {
-                skipButtonOnClick = true;
-                skipButtonDown = false;
-            }
-            if (pauseButtonOnClick)
-            {
-                //   print("click");
-                pauseButtonOnClick = false;
-                MenuOnClick();
-            }
-            else if (skipButtonOnClick)
-            {
-                skipButtonOnClick = false;
-                TriggerOnClick();
-            }
-        }
+        //// button check
+        //{
+        //    bool buttonPress = false;
+        //    foreach (CommonButton button in pauseButtons)
+        //    {
+        //        if (button.GetPressDown())
+        //        {
+        //            buttonPress = true;
+        //            pauseButtonDown = true;
+        //        }
+        //    }
+        //    if (!buttonPress && pauseButtonDown)
+        //    {
+        //        pauseButtonOnClick = true;
+        //        pauseButtonDown = false;
+        //    }
+        //    buttonPress = false;
+        //    //TODO test skip+pause
+        //    foreach (CommonButton button in skipButtons)
+        //    {
+        //        if (button.GetPressDown())
+        //        {
+        //            buttonPress = true;
+        //            skipButtonDown = true;
+        //        }
+        //    }
+        //    if (!buttonPress && skipButtonDown)
+        //    {
+        //        skipButtonOnClick = true;
+        //        skipButtonDown = false;
+        //    }
+        //    if (pauseButtonOnClick)
+        //    {
+        //        //   print("click");
+        //        pauseButtonOnClick = false;
+        //        MenuOnClick();
+        //    }
+        //    else if (skipButtonOnClick)
+        //    {
+        //        skipButtonOnClick = false;
+        //        TriggerOnClick();
+        //    }
+        //}
 
         if (state == GameState.Counting)
         {
