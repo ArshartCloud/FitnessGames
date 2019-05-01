@@ -32,7 +32,6 @@ public class MenuHand : MonoBehaviour {
         hand.type = AffectType.Virtual;
     }
 
-
     // FixedUpdate is not called every graphical frame but rather every physics frame
     void FixedUpdate()
     {
@@ -75,7 +74,8 @@ public class MenuHand : MonoBehaviour {
                     }
                     else {
                         GameManager.gameMode = (GameMode)System.Enum.Parse(typeof(GameMode), go.name);
-                        SceneManager.LoadScene(go.name, LoadSceneMode.Single);
+                        //SceneManager.LoadScene(go.name, LoadSceneMode.Single);
+                        SceneManager.LoadScene("Mixed", LoadSceneMode.Single);
                     }
                     
                 }
