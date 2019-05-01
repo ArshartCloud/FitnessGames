@@ -341,12 +341,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 67575983}
   m_Mesh: {fileID: 4300018, guid: b89d993fef45c944aba7b01b017b39e0, type: 3}
---- !u!114 &79567444 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114000013161423872, guid: e43af32dbae9d467e869346a2bd6a834,
-    type: 2}
-  m_PrefabInternal: {fileID: 222984574}
-  m_Script: {fileID: 11500000, guid: c2e4d0fd6c81241879e078bf11017bb3, type: 3}
 --- !u!1 &80678802
 GameObject:
   m_ObjectHideFlags: 0
@@ -1896,6 +1890,18 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e43af32dbae9d467e869346a2bd6a834, type: 2}
   m_IsPrefabAsset: 0
+--- !u!114 &222984575 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114626358627840666, guid: e43af32dbae9d467e869346a2bd6a834,
+    type: 2}
+  m_PrefabInternal: {fileID: 222984574}
+  m_Script: {fileID: 11500000, guid: 813cd6b6addbd5e4d9bb2bce797a037d, type: 3}
+--- !u!114 &222984576 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114404380664722294, guid: e43af32dbae9d467e869346a2bd6a834,
+    type: 2}
+  m_PrefabInternal: {fileID: 222984574}
+  m_Script: {fileID: 11500000, guid: 813cd6b6addbd5e4d9bb2bce797a037d, type: 3}
 --- !u!1 &250143339
 GameObject:
   m_ObjectHideFlags: 0
@@ -2276,12 +2282,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 312072875}
   m_Mesh: {fileID: 4300024, guid: b89d993fef45c944aba7b01b017b39e0, type: 3}
---- !u!114 &318335085 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114000012429990196, guid: e43af32dbae9d467e869346a2bd6a834,
-    type: 2}
-  m_PrefabInternal: {fileID: 222984574}
-  m_Script: {fileID: 11500000, guid: c2e4d0fd6c81241879e078bf11017bb3, type: 3}
 --- !u!1 &319632441
 GameObject:
   m_ObjectHideFlags: 0
@@ -10042,7 +10042,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc0a685f253320a43a7a5c4bfd05b209, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hand: {fileID: 318335085}
+  hand: {fileID: 222984576}
   button: {fileID: 1095327406}
 --- !u!4 &1871135609
 Transform:
@@ -10068,7 +10068,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc0a685f253320a43a7a5c4bfd05b209, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hand: {fileID: 79567444}
+  hand: {fileID: 222984575}
   button: {fileID: 657377791}
 --- !u!1 &1874150347
 GameObject:
