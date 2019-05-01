@@ -925,12 +925,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1370855380434884, guid: 73b9c2942343cd2428baec0fb3a2101c,
     type: 2}
   m_PrefabInternal: {fileID: 222265002}
---- !u!114 &981874165 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114000010435013178, guid: e43af32dbae9d467e869346a2bd6a834,
-    type: 2}
-  m_PrefabInternal: {fileID: 2001952075}
-  m_Script: {fileID: 11500000, guid: 845da629d8bcf484eb1b69ddaec234f5, type: 3}
 --- !u!1 &984408720
 GameObject:
   m_ObjectHideFlags: 0
@@ -1725,12 +1719,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1302426643 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114000011435919850, guid: e43af32dbae9d467e869346a2bd6a834,
-    type: 2}
-  m_PrefabInternal: {fileID: 2001952075}
-  m_Script: {fileID: 11500000, guid: 845da629d8bcf484eb1b69ddaec234f5, type: 3}
 --- !u!114 &1360724491 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114000012325224004, guid: e43af32dbae9d467e869346a2bd6a834,
@@ -2189,11 +2177,11 @@ MonoBehaviour:
   leftHand: {fileID: 1538258868}
   rightHand: {fileID: 340593527}
   pauseButtons:
-  - {fileID: 1302426643}
-  - {fileID: 1302426643}
-  skipButtons:
   - {fileID: 1360724491}
-  - {fileID: 981874165}
+  - {fileID: 2001952078}
+  skipButtons:
+  - {fileID: 2001952077}
+  - {fileID: 2001952076}
   textBoard: {fileID: 1548115527}
   pauseBoard: {fileID: 1027978199}
   TrainingCarl: {fileID: 683781220}
@@ -2573,6 +2561,24 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e43af32dbae9d467e869346a2bd6a834, type: 2}
   m_IsPrefabAsset: 0
+--- !u!114 &2001952076 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114000012729560220, guid: e43af32dbae9d467e869346a2bd6a834,
+    type: 2}
+  m_PrefabInternal: {fileID: 2001952075}
+  m_Script: {fileID: 11500000, guid: 845da629d8bcf484eb1b69ddaec234f5, type: 3}
+--- !u!114 &2001952077 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114000012129250720, guid: e43af32dbae9d467e869346a2bd6a834,
+    type: 2}
+  m_PrefabInternal: {fileID: 2001952075}
+  m_Script: {fileID: 11500000, guid: 845da629d8bcf484eb1b69ddaec234f5, type: 3}
+--- !u!114 &2001952078 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114000010536600086, guid: e43af32dbae9d467e869346a2bd6a834,
+    type: 2}
+  m_PrefabInternal: {fileID: 2001952075}
+  m_Script: {fileID: 11500000, guid: 845da629d8bcf484eb1b69ddaec234f5, type: 3}
 --- !u!1 &2030083373
 GameObject:
   m_ObjectHideFlags: 0
