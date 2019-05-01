@@ -2573,7 +2573,13 @@ Prefab:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1928868452}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 136313969546398796, guid: 63ef7579c3669204cbefbcbcb1b80628, type: 2}
+    - {fileID: 114385391832732934, guid: 63ef7579c3669204cbefbcbcb1b80628, type: 2}
+    - {fileID: 54872954686598858, guid: 63ef7579c3669204cbefbcbcb1b80628, type: 2}
+    - {fileID: 114980697555091228, guid: 63ef7579c3669204cbefbcbcb1b80628, type: 2}
+    - {fileID: 54730279501344644, guid: 63ef7579c3669204cbefbcbcb1b80628, type: 2}
+    - {fileID: 136190913939733822, guid: 63ef7579c3669204cbefbcbcb1b80628, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 63ef7579c3669204cbefbcbcb1b80628, type: 2}
   m_IsPrefabAsset: 0
 --- !u!114 &2001952076 stripped
