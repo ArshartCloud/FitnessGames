@@ -137,6 +137,32 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    public void TriggerOnClick()
+    {
+        buttonClickSound.Play();
+        if (state == GameState.Training)
+        {
+            TrainingEnd();
+        }
+        else if (state == GameState.Pause)
+        {
+            ReturnToMenu();
+        }
+    }
+
+    public void MenuOnClick()
+    {
+        buttonClickSound.Play();
+        if (state == GameState.Playing)
+        {
+            GamePause();
+        }
+        else if (state == GameState.Pause)
+        {
+            GameContinue();
+        }
+    }
+
     // Use this for initialization
     void Start ()
     {
@@ -206,29 +232,13 @@ public class GameManager : MonoBehaviour {
             if (pauseButtonOnClick)
             {
                 //   print("click");
-                buttonClickSound.Play();
                 pauseButtonOnClick = false;
-                if (state == GameState.Playing)
-                {
-                    GamePause();
-                }
-                else if (state == GameState.Pause)
-                {
-                    GameContinue();
-                }
+                MenuOnClick();
             }
             else if (skipButtonOnClick)
             {
-                buttonClickSound.Play();
                 skipButtonOnClick = false;
-                if (state == GameState.Training)
-                {
-                    TrainingEnd();
-                }
-                else if (state == GameState.Pause)
-                {
-                    ReturnToMenu();
-                }
+                TriggerOnClick();
             }
         }
 
@@ -255,6 +265,8 @@ public class GameManager : MonoBehaviour {
             }
         }
     }
+
+
 
     void ArmPause()
     {
