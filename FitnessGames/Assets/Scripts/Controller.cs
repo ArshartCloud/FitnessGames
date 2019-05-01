@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Controller : MonoBehaviour {
 
-    [Tooltip("The interactive used to represent the virtual hand.")]
-    public Affect hand;
+    //[Tooltip("The interactive used to represent the virtual hand.")]
+    //public Affect hand;
 
 
     [Tooltip("Way to pause")]
