@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour {
         Playing,
         Training,
         Counting,
-        GameOver;
+        GameOver
     };
     
     //Static instance of GameManager which allows it to be accessed by any other script.
