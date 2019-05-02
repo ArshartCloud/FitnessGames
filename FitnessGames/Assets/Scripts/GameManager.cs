@@ -100,8 +100,15 @@ public class GameManager : MonoBehaviour {
     {
         Time.timeScale = 0;
         state = GameState.Pause;
-	   UpdateText();
+	    UpdateText();
     }
+
+    public void PauseEnd()
+    {
+        state = GameState.Counting;
+        CountDown();
+    }
+
     public void GameContinue()
     {
         Time.timeScale = 1;
@@ -161,7 +168,8 @@ public class GameManager : MonoBehaviour {
         }
         else if (state == GameState.Pause)
         {
-            GameContinue();
+            //GameContinue();
+            PauseEnd();
         }
     }
 
@@ -244,6 +252,7 @@ public class GameManager : MonoBehaviour {
         pauseBoard.gameObject.SetActive(true);
         currentTime = maxCountingTime;
         state = GameState.Counting;
+        pauseBoard.fontSize = 15f;
     }
 
     void TrainingEnd()
@@ -298,7 +307,9 @@ public class GameManager : MonoBehaviour {
             textBoard.SetText("Press <Menu Button> to Pause");
         } else if (state == GameState.Pause)
         {
-            textBoard.SetText("Press <Menu button> to Continue\nPress <trigger> to Exit");
+            pauseBoard.fontSize = 7f;
+            pauseBoard.SetText("Press <Menu button> to Continue\nPress <trigger> to Exit");
+            pauseBoard.gameObject.SetActive(true);
         }
     }
 }
