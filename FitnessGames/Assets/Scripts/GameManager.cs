@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour {
     //bool skipButtonOnClick = false;
     //bool pauseButtonDown = false;
     //bool skipButtonDown = false;
-    float currentTime = 0f;
+    float targetTime = 0f;
 
     //Awake is always called before any Start functions
     void Awake()
@@ -171,7 +171,7 @@ public class GameManager : MonoBehaviour {
         {
             //GameContinue();
             PauseEnd();
-        }
+        } 
     }
 
     // Use this for initialization
@@ -188,14 +188,13 @@ public class GameManager : MonoBehaviour {
         spawner.SetHeadPos(headTracker.position);
         state = GameState.Training;
         //state = GameState.Counting;
-        currentTime = trainingTime;
+        targetTime = trainingTime + Time.realtimeSinceStartup;
         TrainingCarl = Instantiate(Resources.Load("Prefabs/Animation/" + gameMode.ToString(), typeof(GameObject))) as GameObject;
     }
 
     // Update is called once per frame
     void Update()
     {
-        currentTime -= 1 * Time.deltaTime;
         debug.text = state.ToString();
         //distance check
         if (gameMode == GameMode.Twist)
@@ -213,11 +212,12 @@ public class GameManager : MonoBehaviour {
      
         if (state == GameState.Counting)
         {
-            pauseBoard.text = Mathf.RoundToInt(currentTime).ToString();
-            if (currentTime <= 0f)
+            if (targetTime - Time.realtimeSinceStartup >= 0)
+                pauseBoard.text = Mathf.RoundToInt(targetTime - Time.realtimeSinceStartup).ToString();
+            if (targetTime - Time.realtimeSinceStartup <= 0f)
             {
                 pauseBoard.text = "GO!";
-                if (currentTime <= -.5f)
+                if (targetTime - Time.realtimeSinceStartup <= -.5f)
                 {
                     spawner.StartSpawn();
                     TrainingEnd();
@@ -226,14 +226,14 @@ public class GameManager : MonoBehaviour {
             }
         } else if (state == GameState.Training)
         {
-            if (currentTime <= 0f)
+            if (targetTime - Time.realtimeSinceStartup <= 0f)
             {
                 CountDown();
             }
         }
         else if (state == GameState.GameOver)
         {
-            if (currentTime <= 0f)
+            if (targetTime - Time.realtimeSinceStartup <= 0f)
             {
                 ReturnToMenu();
             }
@@ -257,7 +257,7 @@ public class GameManager : MonoBehaviour {
     void CountDown()
     {
         pauseBoard.gameObject.SetActive(true);
-        currentTime = maxCountingTime;
+        targetTime = maxCountingTime + Time.realtimeSinceStartup;
         state = GameState.Counting;
         pauseBoard.fontSize = 15f;
     }
@@ -301,7 +301,7 @@ public class GameManager : MonoBehaviour {
         pauseBoard.gameObject.SetActive(true);
         pauseBoard.text = "Game Over\n Your score is " + scoreSystem.score.ToString();
         state = GameState.GameOver;
-        currentTime = maxCountingTime;
+        targetTime = maxCountingTime + Time.realtimeSinceStartup;
     }
 
     void UpdateText()
