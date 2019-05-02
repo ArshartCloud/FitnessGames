@@ -193,7 +193,7 @@ Transform:
   - {fileID: 1265839216}
   - {fileID: 1348872635}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &116977686
 GameObject:
@@ -426,7 +426,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &189159123
 GameObject:
@@ -618,11 +618,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 216538717}
@@ -1254,7 +1254,7 @@ Transform:
   - {fileID: 2142079944}
   - {fileID: 566283234}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &537107234
 GameObject:
@@ -2715,7 +2715,7 @@ Transform:
   - {fileID: 1052898071}
   - {fileID: 116977687}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1209155805
 GameObject:
@@ -3117,7 +3117,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4527347350791644, guid: 10d1150f2a6d6487fa052dd9af26170d, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10d1150f2a6d6487fa052dd9af26170d, type: 2}
@@ -3330,11 +3330,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 1548115529}
@@ -3591,7 +3591,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1653907736
 MonoBehaviour:
@@ -3754,48 +3754,6 @@ MonoBehaviour:
   viveTriggerAxis: {fileID: 189159124}
   viveTouchpadAxis: {fileID: 1842414342}
   viveVibration: {fileID: 2130330914}
---- !u!1001 &1777531562
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4611844919599708, guid: 18ca66d9ec5544d45b37ad255136abd5, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 19.09491
-      objectReference: {fileID: 0}
-    - target: {fileID: 4611844919599708, guid: 18ca66d9ec5544d45b37ad255136abd5, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 1.5145423
-      objectReference: {fileID: 0}
-    - target: {fileID: 4611844919599708, guid: 18ca66d9ec5544d45b37ad255136abd5, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0.74926853
-      objectReference: {fileID: 0}
-    - target: {fileID: 4611844919599708, guid: 18ca66d9ec5544d45b37ad255136abd5, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4611844919599708, guid: 18ca66d9ec5544d45b37ad255136abd5, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0.021376925
-      objectReference: {fileID: 0}
-    - target: {fileID: 4611844919599708, guid: 18ca66d9ec5544d45b37ad255136abd5, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4611844919599708, guid: 18ca66d9ec5544d45b37ad255136abd5, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.99977154
-      objectReference: {fileID: 0}
-    - target: {fileID: 4611844919599708, guid: 18ca66d9ec5544d45b37ad255136abd5, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 18ca66d9ec5544d45b37ad255136abd5, type: 2}
-  m_IsPrefabAsset: 0
 --- !u!21 &1782249938
 Material:
   serializedVersion: 6
@@ -4398,7 +4356,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &2132267991
 BoxCollider:

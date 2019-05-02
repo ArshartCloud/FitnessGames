@@ -19,7 +19,7 @@ public class ChangeGo : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
         GameObject world = GameObject.Find("World");
-        world = world.transform.Find("SquatAnimation").gameObject;
+        world = world.transform.Find("Squat_Prefeb").gameObject;
         GameObject go1 = world.transform.Find("CA1").gameObject;
         GameObject go2 = world.transform.Find("CA2").gameObject;
         if (go1.activeInHierarchy)
