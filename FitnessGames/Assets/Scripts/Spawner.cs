@@ -4,26 +4,23 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    //public enum GameMode
-    //{
-    //    ArmRaise,
-    //    Twist,
-    //    Squat,
-    //    Mixed
-    //}
+    public float spawnDeltaZ = 20f;
+    public float asteroidDeltaX = .8f;
+    public float asteroidUpDeltaY = 1f;
+    public float asteroidDownDeltaY = -.75f;
+    public float spaceshipDeltaX = 1f;
+    public float spaceshipDeltaY = .5f;
 
-    [Tooltip("The object Spawn each time")]
-    public int SpawnNumber = 2;
-    [Tooltip("The position for spawning, continus SpawnNumber position are fix order")]
-    public Transform[] spawnPoints;
-    public Transform wallspawnPoint;
-    public Transform squatWallPoint;
-    public Transform suqatCoinPoint;
+    //[Tooltip("The object Spawn each time")]
+    //public int SpawnNumber = 2;
+    //[Tooltip("The position for spawning, continus SpawnNumber position are fix order")]
+    //public Transform[] spawnPoints;
+    //public Transform wallspawnPoint;
+    //public Transform squatWallPoint;
+    //public Transform suqatCoinPoint;
 
     [Tooltip("The speed of spawning object")]
     public float objectSpeed = 4.63f;
-    //[Tooltip("The size of spawning object")]
-    //public float size = .2f;
     [Tooltip("The time between spawning two objects")]
     public float timeGap = 5.0f;
     [Tooltip("The object factory objects")]
@@ -34,9 +31,8 @@ public class Spawner : MonoBehaviour
 
     public GameMode state;
 
-
-    [Tooltip("Parameters for twist")]
-    public float spaceShipWidth = 1f;
+    //[Tooltip("Parameters for twist")]
+    //public float spaceShipWidth = 1f;
 
     //[Tooltip("Parameters for twist")]
     //public float spaceShipWidth = 1f;
@@ -64,149 +60,73 @@ public class Spawner : MonoBehaviour
         world = GameObject.Find("World").transform;
     }
 	
+    GameObject Spawn(Factory f, Vector3 pos)
+    {
+        GameObject go = f.Create();
+        go.transform.position = pos;
+        //go.transform.rotation = Vector3.zero;
+        FlyingObject fo = go.GetComponent<FlyingObject>();// get real object from unity  
+        fo.SetFactory(f);
+        fo.ReclaimByTime();
+        go.transform.SetParent(world, true);
+        fo.SetSpeed(objectSpeed * movingDirection);
+        return go;
+    }
+
 	// Update is called once per frame
 	void Update () {
         if (spawnStart && Time.time - lastSpawnTime > timeGap)
         {
-            if (state == GameMode.Twist)
+            lastSpawnTime = Time.time;
+            if (state == GameMode.ArmRaise)
             {
                 if (step == 0)
                 {
-                    Factory objectFactory = spaceShipFactorys[Random.Range(0, spaceShipFactorys.Length)];
+                    // asteroid up step
                     step++;
-                    float x = spaceShipWidth;
-                    lastSpawnTime = Time.time;
-                    GameObject go = objectFactory.Create();
-                    //Rigidbody rb = go.GetComponent<Rigidbody>();
-                    //rb.velocity = objectSpeed * movingDirection;
-                    //rb.angularVelocity = Vector3.zero;
-                    go.transform.position = wallspawnPoint.position + new Vector3(x, 0.0f, 0.0f);
-                    go.transform.rotation = wallspawnPoint.rotation;
-                    FlyingObject fo = go.GetComponent<FlyingObject>();// get real object from unity  
-                    fo.SetFactory(objectFactory);
-                    fo.ReclaimByTime();
-                    go.transform.SetParent(world, true);
-                    fo.SetSpeed(objectSpeed * movingDirection);
-
-                    go = objectFactory.Create();
-                    //rb = go.GetComponent<Rigidbody>();
-                    //rb.velocity = objectSpeed * movingDirection;
-                    //rb.angularVelocity = Vector3.zero;
-                    go.transform.position = wallspawnPoint.position + new Vector3(-x, 0.0f, 0.0f);
-                    go.transform.rotation = wallspawnPoint.rotation;
-                    fo = go.GetComponent<FlyingObject>();// get real object from unity  
-                    fo.SetFactory(objectFactory);
-                    fo.ReclaimByTime();
-                    go.transform.SetParent(world, true);
-                    fo.SetSpeed(objectSpeed * movingDirection);
-                } else
-                {
-                    step = 0;
-                    Factory objectFactory = asteroidFactory;
-                    lastSpawnTime = Time.time;
-                    GameObject go = objectFactory.Create();
-                    //go.GetComponent<Rigidbody>().velocity = objectSpeed * movingDirection;
-                    go.transform.position = spawnPoints[0].position;
-                    go.transform.rotation = spawnPoints[0].rotation;
-                    FlyingObject fo = go.GetComponent<FlyingObject>();// get real object from unity  
-                    fo.SetFactory(objectFactory);
-                    fo.ReclaimByTime();
-                    go.transform.SetParent(world, true);
-                    fo.SetSpeed(objectSpeed * movingDirection);
-
-                    go = objectFactory.Create();
-                    //go.GetComponent<Rigidbody>().velocity = objectSpeed * movingDirection;
-                    go.transform.position = spawnPoints[1].position;
-                    go.transform.rotation = spawnPoints[1].rotation;
-                    fo = go.GetComponent<FlyingObject>();// get real object from unity  
-                    fo.SetFactory(objectFactory);
-                    fo.ReclaimByTime();
-                    go.transform.SetParent(world, true);
-                    //go.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-                    fo.SetSpeed(objectSpeed * movingDirection);
+                    Spawn(asteroidFactory, userHeadPos + new Vector3(asteroidDeltaX, asteroidUpDeltaY, spawnDeltaZ));
+                    Spawn(asteroidFactory, userHeadPos + new Vector3(-asteroidDeltaX, asteroidUpDeltaY, spawnDeltaZ));
                 }
-            }
-            else if (state == GameMode.ArmRaise)
-            {
-                Factory objectFactory = asteroidFactory;
-                // fix number
-                if (spawnPoints.Length < SpawnNumber)
-                {
-                    return;
-                }
-                //int index = Random.Range(0, spawnPoints.Length / SpawnNumber);
-                //index *= SpawnNumber;
-                int index = 2;
-                if (step == 0) step++;
                 else
                 {
+                    // asteroid down step
                     step = 0;
-                    index = 0;
+                    Spawn(asteroidFactory, userHeadPos + new Vector3(asteroidDeltaX, asteroidDownDeltaY, spawnDeltaZ));
+                    Spawn(asteroidFactory, userHeadPos + new Vector3(-asteroidDeltaX, asteroidDownDeltaY, spawnDeltaZ));
                 }
-                for (int i = 0; i < SpawnNumber; i++)
+            }
+            else if (state == GameMode.Twist)
+            {
+                if (step == 0)
                 {
-                    lastSpawnTime = Time.time;
-                    GameObject go = objectFactory.Create();
-                    go.transform.SetParent(world, true);
-                    //Rigidbody rb = go.GetComponent<Rigidbody>();
-                    //rb.velocity = objectSpeed * movingDirection;
-                    //rb.angularVelocity = Vector3.zero;
-                    go.transform.position = spawnPoints[index].position;
-                    go.transform.rotation = spawnPoints[index].rotation;
-                    FlyingObject fo = go.GetComponent<FlyingObject>();// get real object from unity  
-                    fo.SetSpeed(objectSpeed * movingDirection);
-                    fo.SetFactory(objectFactory);
-                    fo.ReclaimByTime();
-		            index++;
+                    // spaceship step
+                    step++;
+                    Factory objectFactory = spaceShipFactorys[Random.Range(0, spaceShipFactorys.Length)];
+                    Spawn(objectFactory, userHeadPos + new Vector3(spaceshipDeltaX, 0f, spawnDeltaZ));
+                    Spawn(objectFactory, userHeadPos + new Vector3(-spaceshipDeltaX, 0f, spawnDeltaZ));
+                } else
+                {
+                    // asteroid step
+                    step = 0;
+                    //go.transform.position = spawnPoints[0].position;
+                    Spawn(asteroidFactory, userHeadPos + new Vector3(asteroidDeltaX, 0f, spawnDeltaZ));
+                    Spawn(asteroidFactory, userHeadPos + new Vector3(-asteroidDeltaX, 0f, spawnDeltaZ));
                 }
             }
             else if (state == GameMode.Squat)
             {
                 if (step == 0)
                 {
-                    Factory objectFactory = spaceShipFactorys[Random.Range(0, spaceShipFactorys.Length)];
                     step++;
-                    float x = spaceShipWidth;
-                    lastSpawnTime = Time.time;
-                    GameObject go = objectFactory.Create();
-                    //Rigidbody rb = go.GetComponent<Rigidbody>();
-                    //rb.velocity = objectSpeed * movingDirection;
-                    //rb.angularVelocity = Vector3.zero;
-                    go.transform.position = squatWallPoint.position + new Vector3(x, 0.0f, 0.0f);
-                    go.transform.rotation = squatWallPoint.rotation;
-                    FlyingObject fo = go.GetComponent<FlyingObject>();// get real object from unity  
-                    fo.SetFactory(objectFactory);
-                    fo.ReclaimByTime();
-                    go.transform.SetParent(world, true);
-                    fo.SetSpeed(objectSpeed * movingDirection);
+                    Factory objectFactory = spaceShipFactorys[Random.Range(0, spaceShipFactorys.Length)];
+                    Spawn(objectFactory, userHeadPos + new Vector3(0f, spaceshipDeltaY, spawnDeltaZ));
                 }
                 else
                 {
                     step = 0;
-                    Factory objectFactory = asteroidFactory;
-                    lastSpawnTime = Time.time;
-                    GameObject go = objectFactory.Create();
-                    //go.GetComponent<Rigidbody>().velocity = objectSpeed * movingDirection;
-                    go.transform.position = spawnPoints[0].position;
-                    go.transform.rotation = spawnPoints[0].rotation;
-                    FlyingObject fo = go.GetComponent<FlyingObject>();// get real object from unity  
-                    fo.SetFactory(objectFactory);
-                    fo.ReclaimByTime();
-                    go.transform.SetParent(world, true);
-                    fo.SetSpeed(objectSpeed * movingDirection);
-
-                    go = objectFactory.Create();
-                    //go.GetComponent<Rigidbody>().velocity = objectSpeed * movingDirection;
-                    go.transform.position = spawnPoints[1].position;
-                    go.transform.rotation = spawnPoints[1].rotation;
-                    fo = go.GetComponent<FlyingObject>();// get real object from unity  
-                    fo.SetFactory(objectFactory);
-                    fo.ReclaimByTime();
-                    go.transform.SetParent(world, true);
-                    //go.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-                    fo.SetSpeed(objectSpeed * movingDirection);
+                    Spawn(asteroidFactory, userHeadPos + new Vector3(asteroidDeltaX, asteroidUpDeltaY, spawnDeltaZ));
+                    Spawn(asteroidFactory, userHeadPos + new Vector3(-asteroidDeltaX, asteroidUpDeltaY, spawnDeltaZ));
                 }
-
             }
         }
     }

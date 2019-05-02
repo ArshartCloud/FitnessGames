@@ -33,7 +33,7 @@ public class MenuHand : MonoBehaviour {
     }
 
     // FixedUpdate is not called every graphical frame but rather every physics frame
-    void FixedUpdate()
+    void Update()
     {
 
         // If state is open

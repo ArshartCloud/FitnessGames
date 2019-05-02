@@ -200,50 +200,7 @@ public class GameManager : MonoBehaviour {
                 //UpdateText();
             }
         }
-        //// button check
-        //{
-        //    bool buttonPress = false;
-        //    foreach (CommonButton button in pauseButtons)
-        //    {
-        //        if (button.GetPressDown())
-        //        {
-        //            buttonPress = true;
-        //            pauseButtonDown = true;
-        //        }
-        //    }
-        //    if (!buttonPress && pauseButtonDown)
-        //    {
-        //        pauseButtonOnClick = true;
-        //        pauseButtonDown = false;
-        //    }
-        //    buttonPress = false;
-        //    //TODO test skip+pause
-        //    foreach (CommonButton button in skipButtons)
-        //    {
-        //        if (button.GetPressDown())
-        //        {
-        //            buttonPress = true;
-        //            skipButtonDown = true;
-        //        }
-        //    }
-        //    if (!buttonPress && skipButtonDown)
-        //    {
-        //        skipButtonOnClick = true;
-        //        skipButtonDown = false;
-        //    }
-        //    if (pauseButtonOnClick)
-        //    {
-        //        //   print("click");
-        //        pauseButtonOnClick = false;
-        //        MenuOnClick();
-        //    }
-        //    else if (skipButtonOnClick)
-        //    {
-        //        skipButtonOnClick = false;
-        //        TriggerOnClick();
-        //    }
-        //}
-
+     
         if (state == GameState.Counting)
         {
             currentTime -= 1 * Time.deltaTime;
