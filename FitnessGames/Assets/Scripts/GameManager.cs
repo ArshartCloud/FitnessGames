@@ -137,8 +137,6 @@ public class GameManager : MonoBehaviour {
         if (fo.collectable)
         {
             fo.Explode();
-            GameObject go = GameObject.Instantiate(explosion);
-            GameObject.Destroy(go, 3f);
             hitSound.Play();
             ChangeScore(fo.score);
             //rint("Add score" + fo.score.ToString());
@@ -146,6 +144,9 @@ public class GameManager : MonoBehaviour {
         // space ship
         else
         {
+            GameObject go = GameObject.Instantiate(explosion);
+            GameObject.Destroy(go, 3f);
+            go.transform.position = fo.transform.position;
             fo.Shine();
             ChangeHealthPoint(-1);
         }
@@ -192,7 +193,11 @@ public class GameManager : MonoBehaviour {
         state = GameState.Training;
         //state = GameState.Counting;
         targetTime = trainingTime + Time.realtimeSinceStartup;
-        TrainingCarl = Instantiate(Resources.Load("Prefabs/Animation/" + gameMode.ToString(), typeof(GameObject))) as GameObject;
+        string objPath = "Prefabs/Animation/" + gameMode.ToString();
+        print(objPath);
+        GameObject carl = Instantiate(Resources.Load(objPath, typeof(GameObject))) as GameObject;
+        carl.transform.position = TrainingCarl.transform.position;
+        carl.transform.parent = TrainingCarl.transform.parent;
     }
 
     // Update is called once per frame

@@ -20,6 +20,7 @@ public class ScoreSystem : MonoBehaviour {
     public void ChangeHealthPoint(int delta)
     {
         HealthPoint += delta;
+        if (HealthPoint < 0) HealthPoint = 0;
         TextUpdate();
     }
 
