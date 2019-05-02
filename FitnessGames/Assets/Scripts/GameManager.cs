@@ -121,20 +121,20 @@ public class GameManager : MonoBehaviour {
 
     public void MissObject(FlyingObject fo)
     {
-        if (fo.state == FlyingObject.FlyingObjectState.Untouched)
-        {
-            if (fo.breakable == false)
-                ChangeScore(fo.score);
-            else
-                ChangeHealthPoint(-1);
-        }
+        //if (fo.state == FlyingObject.FlyingObjectState.Untouched)
+        //{
+        if (!fo.collectable)
+            ChangeScore(fo.score);
+        else
+            ChangeHealthPoint(-1);
+        //}
         fo.Reclaim();
     }
 
     public void HitObject(FlyingObject fo)
     {
         // asteroid
-        if (fo.breakable)
+        if (fo.collectable)
         {
             fo.Explode();
             GameObject go = GameObject.Instantiate(explosion);
@@ -188,7 +188,6 @@ public class GameManager : MonoBehaviour {
         UpdateText();
         //print(gm);
         spawner.state = gameMode;
-        scoreSystem.ChangeHealthPoint(20);
         spawner.SetHeadPos(headTracker.position);
         state = GameState.Training;
         //state = GameState.Counting;
@@ -216,7 +215,7 @@ public class GameManager : MonoBehaviour {
      
         if (state == GameState.Counting)
         {
-            if (targetTime - Time.realtimeSinceStartup >= 0)
+            if (targetTime - Time.realtimeSinceStartup > 0)
                 pauseBoard.text = Mathf.RoundToInt(targetTime - Time.realtimeSinceStartup).ToString();
             if (targetTime - Time.realtimeSinceStartup <= 0f)
             {
@@ -276,11 +275,11 @@ public class GameManager : MonoBehaviour {
     void ChangeScore(int delta)
     {
         scoreSystem.ChangeScore(delta);
-        if (scoreSystem.score >= 12 && state == GameState.Training)
+        if (scoreSystem.Score >= 12 && state == GameState.Training)
         {
             TrainingEnd();
         }
-        if (scoreSystem.score > speedLevel * 100) {
+        if (scoreSystem.Score > speedLevel * 100) {
             spawner.objectSpeed += 1;
             speedLevel++;
         }
@@ -289,7 +288,7 @@ public class GameManager : MonoBehaviour {
     void ChangeHealthPoint(int delta)
     {
         scoreSystem.ChangeHealthPoint(delta);
-        if (scoreSystem.healthPoint <= 0)
+        if (scoreSystem.HealthPoint <= 0)
         {
             GameOver();
         }
@@ -303,7 +302,7 @@ public class GameManager : MonoBehaviour {
     void GameOver()
     {
         pauseBoard.gameObject.SetActive(true);
-        pauseBoard.text = "Game Over\n Your score is " + scoreSystem.score.ToString();
+        pauseBoard.text = "Game Over\n Your score is " + scoreSystem.Score.ToString();
         state = GameState.GameOver;
         targetTime = maxCountingTime + Time.realtimeSinceStartup;
     }

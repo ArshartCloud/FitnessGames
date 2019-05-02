@@ -7,24 +7,29 @@ public class ScoreSystem : MonoBehaviour {
 
     [Tooltip("TextMeshPro that show the current score")]
     public TextMeshPro tmpro;
-
-    public int score { get; protected set; }
-    public int healthPoint { get; protected set; }
+    public int initialHP = 20;
+    public int Score { get; protected set; }
+    public int HealthPoint { get; protected set; }
 
     public void ChangeScore(int delta)
     {
-        score += delta;
+        Score += delta;
         TextUpdate();
     }
 
     public void ChangeHealthPoint(int delta)
     {
-        healthPoint += delta;
+        HealthPoint += delta;
         TextUpdate();
     }
 
     private void TextUpdate()
     {
-        tmpro.SetText("HP: " + healthPoint.ToString() + "\n" + "Score: " + score.ToString());
+        tmpro.SetText("HP: " + HealthPoint.ToString() + "\n" + "Score: " + Score.ToString());
+    }
+
+    private void Start()
+    {
+        HealthPoint = initialHP;
     }
 }

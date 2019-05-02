@@ -18,14 +18,14 @@ public class FlyingObject : MonoBehaviour {
     /// <summary>
     /// The object is break on touch or not. eg: fruit is breakable while wall is not.
     /// </summary>
-    public bool breakable = true;
+    public bool collectable = true;
 
     /// <summary>
     /// the score of object
     /// </summary>
     public int score = 1;
 
-    public FlyingObjectState state = FlyingObjectState.Untouched;
+    //public FlyingObjectState state = FlyingObjectState.Untouched;
 
     /// <summary>
     /// time to start the counter to reclaim.
@@ -56,7 +56,7 @@ public class FlyingObject : MonoBehaviour {
 
     public void Init()
     {
-        state = FlyingObjectState.Untouched;
+        //state = FlyingObjectState.Untouched;
         this.enabled = true;
     }
 
@@ -109,8 +109,6 @@ public class FlyingObject : MonoBehaviour {
     {
         // add some animation here
    //     GetComponent<AudioSource>().Play();
-
-
         Reclaim();
     }
 
@@ -121,8 +119,7 @@ public class FlyingObject : MonoBehaviour {
     {
         // add some animation here
         //GetComponent<AudioSource>().Play();
-
-        state = FlyingObjectState.Touched;
+        //state = FlyingObjectState.Touched;
     }
 
 	// Update is called once per frame
