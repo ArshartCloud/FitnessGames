@@ -53,6 +53,8 @@ public class GameManager : MonoBehaviour {
     [Tooltip("OUR CARL!")]
     public GameObject TrainingCarl;
 
+    public GameObject explosion;
+
     [Tooltip("Sound of Button click (pause/skip)")]
     public AudioSource buttonClickSound;
     
@@ -135,6 +137,8 @@ public class GameManager : MonoBehaviour {
         if (fo.breakable)
         {
             fo.Explode();
+            GameObject go = GameObject.Instantiate(explosion);
+            GameObject.Destroy(go, 3f);
             hitSound.Play();
             ChangeScore(fo.score);
             //rint("Add score" + fo.score.ToString());
