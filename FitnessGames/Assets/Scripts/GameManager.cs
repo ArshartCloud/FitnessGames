@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour {
         Playing,
         Training,
         Counting,
+        GameOver;
     };
     
     //Static instance of GameManager which allows it to be accessed by any other script.
@@ -194,6 +195,7 @@ public class GameManager : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        currentTime -= 1 * Time.deltaTime;
         debug.text = state.ToString();
         //distance check
         if (gameMode == GameMode.Twist)
@@ -203,15 +205,14 @@ public class GameManager : MonoBehaviour {
             {
                 ArmPause();
             }
-            else
+            else if(distance > minimumDistance && state == GameState.Pause)
             {
-                //UpdateText();
+                UpdateText();
             }
         }
      
         if (state == GameState.Counting)
         {
-            currentTime -= 1 * Time.deltaTime;
             pauseBoard.text = Mathf.RoundToInt(currentTime).ToString();
             if (currentTime <= 0f)
             {
@@ -225,10 +226,16 @@ public class GameManager : MonoBehaviour {
             }
         } else if (state == GameState.Training)
         {
-            currentTime -= 1 * Time.deltaTime;
             if (currentTime <= 0f)
             {
                 CountDown();
+            }
+        }
+        else if (state == GameState.GameOver)
+        {
+            if (currentTime <= 0f)
+            {
+                ReturnToMenu();
             }
         }
     }
@@ -289,7 +296,13 @@ public class GameManager : MonoBehaviour {
         spawner.StartSpawn();
     }
 
-    void GameOver() { }
+    void GameOver()
+    {
+        pauseBoard.gameObject.SetActive(true);
+        pauseBoard.text = "Game Over\n Your score is " + scoreSystem.score.ToString();
+        state = GameState.GameOver;
+        currentTime = maxCountingTime;
+    }
 
     void UpdateText()
     {
