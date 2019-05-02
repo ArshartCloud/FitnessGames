@@ -2379,6 +2379,7 @@ MonoBehaviour:
   textBoard: {fileID: 1548115527}
   pauseBoard: {fileID: 1027978199}
   TrainingCarl: {fileID: 0}
+  explosion: {fileID: 1971545181249812, guid: 381b5a5dc78b8d1479c872c111ec52a2, type: 2}
   buttonClickSound: {fileID: 984408722}
   minimumDistance: 0
   maxCountingTime: 3
