@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public float spawnDeltaZ = 20f;
+    public float spawnDeltaZ = 50f;
     public float asteroidDeltaX = .8f;
     public float asteroidUpDeltaY = 1f;
     public float asteroidDownDeltaY = -.75f;
@@ -24,10 +24,10 @@ public class Spawner : MonoBehaviour
     [Tooltip("The time between spawning two objects")]
     public float timeGap = 5.0f;
     [Tooltip("The object factory objects")]
-    public Factory[] spaceShipFactorys;
+    public Factory asteroidFactory;
 
     [Tooltip("The object factory objects")]
-    public Factory asteroidFactory;
+    public Factory energyFactory;
 
     public GameMode state;
 
@@ -84,15 +84,15 @@ public class Spawner : MonoBehaviour
                 {
                     // asteroid up step
                     step++;
-                    Spawn(asteroidFactory, userHeadPos + new Vector3(asteroidDeltaX, asteroidUpDeltaY, spawnDeltaZ));
-                    Spawn(asteroidFactory, userHeadPos + new Vector3(-asteroidDeltaX, asteroidUpDeltaY, spawnDeltaZ));
+                    Spawn(energyFactory, userHeadPos + new Vector3(asteroidDeltaX, asteroidUpDeltaY, spawnDeltaZ));
+                    Spawn(energyFactory, userHeadPos + new Vector3(-asteroidDeltaX, asteroidUpDeltaY, spawnDeltaZ));
                 }
                 else
                 {
                     // asteroid down step
                     step = 0;
-                    Spawn(asteroidFactory, userHeadPos + new Vector3(asteroidDeltaX, asteroidDownDeltaY, spawnDeltaZ));
-                    Spawn(asteroidFactory, userHeadPos + new Vector3(-asteroidDeltaX, asteroidDownDeltaY, spawnDeltaZ));
+                    Spawn(energyFactory, userHeadPos + new Vector3(asteroidDeltaX, asteroidDownDeltaY, spawnDeltaZ));
+                    Spawn(energyFactory, userHeadPos + new Vector3(-asteroidDeltaX, asteroidDownDeltaY, spawnDeltaZ));
                 }
             }
             else if (state == GameMode.Twist)
@@ -101,16 +101,16 @@ public class Spawner : MonoBehaviour
                 {
                     // spaceship step
                     step++;
-                    Factory objectFactory = spaceShipFactorys[Random.Range(0, spaceShipFactorys.Length)];
-                    Spawn(objectFactory, userHeadPos + new Vector3(spaceshipDeltaX, 0f, spawnDeltaZ));
-                    Spawn(objectFactory, userHeadPos + new Vector3(-spaceshipDeltaX, 0f, spawnDeltaZ));
+                    //Factory objectFactory = asteroidFactory[Random.Range(0, asteroidFactory.Length)];
+                    Spawn(asteroidFactory, userHeadPos + new Vector3(spaceshipDeltaX, 0f, spawnDeltaZ));
+                    Spawn(asteroidFactory, userHeadPos + new Vector3(-spaceshipDeltaX, 0f, spawnDeltaZ));
                 } else
                 {
                     // asteroid step
                     step = 0;
                     //go.transform.position = spawnPoints[0].position;
-                    Spawn(asteroidFactory, userHeadPos + new Vector3(asteroidDeltaX, 0f, spawnDeltaZ));
-                    Spawn(asteroidFactory, userHeadPos + new Vector3(-asteroidDeltaX, 0f, spawnDeltaZ));
+                    Spawn(energyFactory, userHeadPos + new Vector3(asteroidDeltaX, 0f, spawnDeltaZ));
+                    Spawn(energyFactory, userHeadPos + new Vector3(-asteroidDeltaX, 0f, spawnDeltaZ));
                 }
             }
             else if (state == GameMode.Squat)
@@ -118,14 +118,13 @@ public class Spawner : MonoBehaviour
                 if (step == 0)
                 {
                     step++;
-                    Factory objectFactory = spaceShipFactorys[Random.Range(0, spaceShipFactorys.Length)];
-                    Spawn(objectFactory, userHeadPos + new Vector3(0f, spaceshipDeltaY, spawnDeltaZ));
+                    Spawn(asteroidFactory, userHeadPos + new Vector3(0f, spaceshipDeltaY, spawnDeltaZ));
                 }
                 else
                 {
                     step = 0;
-                    Spawn(asteroidFactory, userHeadPos + new Vector3(asteroidDeltaX, asteroidUpDeltaY, spawnDeltaZ));
-                    Spawn(asteroidFactory, userHeadPos + new Vector3(-asteroidDeltaX, asteroidUpDeltaY, spawnDeltaZ));
+                    Spawn(energyFactory, userHeadPos + new Vector3(asteroidDeltaX, asteroidUpDeltaY, spawnDeltaZ));
+                    Spawn(energyFactory, userHeadPos + new Vector3(-asteroidDeltaX, asteroidUpDeltaY, spawnDeltaZ));
                 }
             }
         }

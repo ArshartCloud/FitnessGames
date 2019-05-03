@@ -194,7 +194,6 @@ public class GameManager : MonoBehaviour {
         //state = GameState.Counting;
         targetTime = trainingTime + Time.realtimeSinceStartup;
         string objPath = "Prefabs/Animation/" + gameMode.ToString();
-        print(objPath);
         GameObject carl = Instantiate(Resources.Load(objPath, typeof(GameObject))) as GameObject;
         carl.transform.position = TrainingCarl.transform.position;
         carl.transform.parent = TrainingCarl.transform.parent;
