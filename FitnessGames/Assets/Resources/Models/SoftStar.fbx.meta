@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: ea5eb651ff6dbac43b9e29da9120cbcc
-timeCreated: 1483619095
+guid: bc0cdff0b0fdafc46bbdbda4b3717d71
+timeCreated: 1476389794
 licenseType: Store
 ModelImporter:
   serializedVersion: 19
@@ -9,7 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: SF_Imperial-Corvette-F3
+    4300000: Cube.014
   materials:
     importMaterials: 1
     materialName: 0
