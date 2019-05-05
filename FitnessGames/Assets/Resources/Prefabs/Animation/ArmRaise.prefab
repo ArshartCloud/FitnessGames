@@ -1673,7 +1673,7 @@ GameObject:
   - component: {fileID: 4484835268471920}
   - component: {fileID: 95808448278457786}
   m_Layer: 0
-  m_Name: ArmRaise_new
+  m_Name: ArmRaise
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
