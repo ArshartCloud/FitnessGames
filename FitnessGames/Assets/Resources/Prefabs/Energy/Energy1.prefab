@@ -21,6 +21,9 @@ GameObject:
   - component: {fileID: 4463186821889172}
   - component: {fileID: 33143952418018822}
   - component: {fileID: 23066135088564050}
+  - component: {fileID: 114686129241858558}
+  - component: {fileID: 54078274479516060}
+  - component: {fileID: 114469902663902684}
   m_Layer: 0
   m_Name: Energy1
   m_TagString: Untagged
@@ -145,6 +148,48 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1289020176640266}
   m_Mesh: {fileID: 4300000, guid: fce0ecff534816b49af71ef31033c259, type: 3}
+--- !u!54 &54078274479516060
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1289020176640266}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &114469902663902684
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1289020176640266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b24b0ed541a94655bab28e1a318582d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shape: 0
+  useGravity: 1
+--- !u!114 &114686129241858558
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1289020176640266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d076d94b22825c4c8b5a5cf588935d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  liveTime: 6
+  collectable: 1
+  score: 1
 --- !u!198 &198414267886860814
 ParticleSystem:
   m_ObjectHideFlags: 1

@@ -365,7 +365,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   liveTime: 20
-  collectable: 1
+  collectable: 0
   score: 1
 --- !u!114 &114475553470245282
 MonoBehaviour:

@@ -378,7 +378,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   liveTime: 20
-  collectable: 1
+  collectable: 0
   score: 1
 --- !u!136 &136807755018897118
 CapsuleCollider:

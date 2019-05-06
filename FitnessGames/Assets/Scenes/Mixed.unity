@@ -2264,7 +2264,7 @@ MonoBehaviour:
   objectSpeed: 4.63
   timeGap: 5
   asteroidFactory: {fileID: 1653907736}
-  energyFactory: {fileID: 0}
+  energyFactory: {fileID: 1653907741}
   state: 0
 --- !u!4 &1653907735
 Transform:
@@ -2294,7 +2294,7 @@ MonoBehaviour:
   - {fileID: 1679880484517158, guid: 3d704936b7bd4574db46fa22ec75b1d0, type: 2}
   - {fileID: 1942503435751270, guid: bcd2dd15dffffba449362678418def31, type: 2}
   - {fileID: 1176740622124982, guid: 336d3f4137900a7498ea1812bc172a82, type: 2}
-  - {fileID: 1258963913569864, guid: 3fe4060030c42cd4eb6dd38bdf30a44e, type: 2}
+  - {fileID: 1224159016760852, guid: 3fe4060030c42cd4eb6dd38bdf30a44e, type: 2}
   - {fileID: 1814463804216736, guid: 689cca49ee99d2a43a4ab50f31a9b522, type: 2}
   - {fileID: 1724992286038758, guid: a3e5ed1f7007caf42abee66f3669973b, type: 2}
   - {fileID: 1292990715986940, guid: 36595c8d9d7adce47aba23ffb0635b4f, type: 2}
@@ -2326,7 +2326,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tmpro: {fileID: 216538716}
-  initialHP: 20
+  totalTime: 300
+  timer: 0
 --- !u!114 &1653907739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2375,8 +2376,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabs:
-  - {fileID: 1919420321692742, guid: d8c04fa93572e6e4fb1bfa9158402ae9, type: 2}
-  - {fileID: 1025039956052780, guid: 43dccc87f9cb52f40aa71e5e097ebebe, type: 2}
+  - {fileID: 1289020176640266, guid: a9ec06948a67d5a4aaaba3eb91b92733, type: 2}
 --- !u!1 &1884695065
 GameObject:
   m_ObjectHideFlags: 0
