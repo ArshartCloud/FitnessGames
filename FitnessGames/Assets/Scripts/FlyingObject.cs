@@ -18,7 +18,9 @@ public class FlyingObject : MonoBehaviour {
     /// <summary>
     /// The object is break on touch or not. eg: fruit is breakable while wall is not.
     /// </summary>
-    public bool collectable = true;
+    public bool collectable =false;
+    public bool autoRotate = false;
+    public float rotateSpeed = 5f;
 
     /// <summary>
     /// the score of object
@@ -38,20 +40,21 @@ public class FlyingObject : MonoBehaviour {
     bool isReclaim = false;
     // TO fix some very wired bug
     Vector3 velocity = Vector3.back;
-    Vector3 angularVelocity = Vector3.zero;
+    //Vector3 angularVelocity = Vector3.zero;
 
 
     private void Start()
     {
-        Rigidbody rb = GetComponent<Rigidbody>();
-
-        if (rb != null)
-            rb.AddExplosionForce(10.0f, transform.position, 5.0f, 3.0F);
+        //Rigidbody rb = GetComponent<Rigidbody>();
     }
 
     public void SetSpeed(Vector3 speed)
     {
+        Rigidbody rb = GetComponent<Rigidbody>();
         velocity = speed;
+        rb.velocity = velocity;
+
+            //rb.angularVelocity = new Vector3(0, 0, 1) * rotateSpeed;
     }
 
     public void Init()
@@ -129,10 +132,14 @@ public class FlyingObject : MonoBehaviour {
         {
             Reclaim();
         }
-
+        if (autoRotate)
+        {
+            transform.Rotate(new Vector3(0, 0, 1) * rotateSpeed * Time.deltaTime);
+        }
         // to fix some bug
-        Rigidbody rb = GetComponent<Rigidbody>();
-        rb.velocity = velocity;
-        rb.angularVelocity = angularVelocity;
+        //Rigidbody rb = GetComponent<Rigidbody>();
+        //transform.position += velocity * Time.deltaTime;
+        //rb.velocity = velocity;
+        //rb.angularVelocity = angularVelocity;
     }
 }
