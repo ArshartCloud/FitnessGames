@@ -364,8 +364,6 @@ public class GameManager : MonoBehaviour {
 
     void GameOver()
     {
-        pauseBoard.gameObject.SetActive(true);
-        pauseBoard.text = "Game Over\n Your score is " + scoreSystem.Score.ToString();
         state = GameState.GameOver;
         targetTime = maxCountingTime + Time.realtimeSinceStartup;
     }
@@ -389,6 +387,11 @@ public class GameManager : MonoBehaviour {
             pauseBoard.fontSize = 7f;
             pauseBoard.SetText("Press <Menu button> to Continue\nPress <trigger> to Exit");
             pauseBoard.gameObject.SetActive(true);
+        }
+        else if (state == GameState.GameOver)
+        {
+            pauseBoard.gameObject.SetActive(true);
+            pauseBoard.text = "Game Over\n Your score is " + scoreSystem.Score.ToString();
         }
     }
 }

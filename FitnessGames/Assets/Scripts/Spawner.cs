@@ -112,8 +112,8 @@ public class Spawner : MonoBehaviour
                     // asteroid step
                     step = 0;
                     //go.transform.position = spawnPoints[0].position;
-                    Spawn(energyFactory, userHeadPos + new Vector3(energyDeltaX, 0f, spawnDeltaZ));
-                    Spawn(energyFactory, userHeadPos + new Vector3(-energyDeltaX, 0f, spawnDeltaZ));
+                    Spawn(energyFactory, userHeadPos + new Vector3(energyDeltaX, TwistDeltaY, spawnDeltaZ));
+                    Spawn(energyFactory, userHeadPos + new Vector3(-energyDeltaX, TwistDeltaY, spawnDeltaZ));
                 }
             }
             else if (state == GameMode.Squat)
