@@ -54,7 +54,7 @@ public class FlyingObject : MonoBehaviour {
         velocity = speed;
         rb.velocity = velocity;
 
-            //rb.angularVelocity = new Vector3(0, 0, 1) * rotateSpeed;
+        rb.angularVelocity = Vector3.zero;
     }
 
     public void Init()
