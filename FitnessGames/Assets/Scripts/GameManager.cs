@@ -121,12 +121,13 @@ public class GameManager : MonoBehaviour {
 
     public void MissObject(FlyingObject fo)
     {
+        // do nothing
         //if (fo.state == FlyingObject.FlyingObjectState.Untouched)
         //{
-        if (!fo.collectable)
-            ChangeScore(fo.score);
-        else
-            ChangeHealthPoint(-1);
+        //if (!fo.collectable)
+        //    ChangeScore(fo.score);
+        //else
+        //    ChangeHealthPoint(-1);
         //}
         fo.Reclaim();
     }
@@ -148,7 +149,7 @@ public class GameManager : MonoBehaviour {
             GameObject.Destroy(go, 3f);
             go.transform.position = fo.transform.position;
             fo.Shine();
-            ChangeHealthPoint(-1);
+            //ChangeHealthPoint(-1);
         }
     }
 
@@ -231,7 +232,14 @@ public class GameManager : MonoBehaviour {
                     GameContinue();
                 }
             }
-        } else if (state == GameState.Training)
+        }
+        else if (state == GameState.Playing)
+        {
+            scoreSystem.timer -= Time.deltaTime;
+            scoreSystem.TextUpdate();
+            if (scoreSystem.timer <= 0) GameOver();
+        }
+        else if (state == GameState.Training)
         {
             if (targetTime - Time.realtimeSinceStartup <= 0f)
             {
@@ -289,14 +297,14 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    void ChangeHealthPoint(int delta)
-    {
-        scoreSystem.ChangeHealthPoint(delta);
-        if (scoreSystem.HealthPoint <= 0)
-        {
-            GameOver();
-        }
-    }
+    //void ChangeHealthPoint(int delta)
+    //{
+    //    scoreSystem.ChangeHealthPoint(delta);
+    //    if (scoreSystem.HealthPoint <= 0)
+    //    {
+    //        GameOver();
+    //    }
+    //}
 
     void GameStart()
     {
