@@ -66,6 +66,8 @@ public class GameManager : MonoBehaviour {
 
     public float trainingTime = 1f;
 
+    public float warnTime = 3f;
+
     public TextMeshPro debug;
 
     //[Tooltip("Way to continue")]
@@ -77,12 +79,19 @@ public class GameManager : MonoBehaviour {
     ScoreSystem scoreSystem;
     GameState state;
     AudioSource hitSound;
+    AudioSource warnSound;
     int speedLevel = 1;
     //bool pauseButtonOnClick = false;
     //bool skipButtonOnClick = false;
     //bool pauseButtonDown = false;
     //bool skipButtonDown = false;
     float targetTime = 0f;
+    float warnStartTime;
+    Color originalStart;
+    Color originalEnd;
+    Color warnStart;
+    Color warnEnd;
+    bool disableHandle = false;
 
     //Awake is always called before any Start functions
     void Awake()
@@ -137,20 +146,48 @@ public class GameManager : MonoBehaviour {
         // asteroid
         if (fo.collectable)
         {
-            fo.Explode();
-            hitSound.Play();
-            ChangeScore(fo.score);
+            if (!disableHandle)
+            {
+                fo.Explode();
+                hitSound.Play();
+                ChangeScore(fo.score);
+            }
             //rint("Add score" + fo.score.ToString());
         }
         // space ship
         else
         {
-            GameObject go = GameObject.Instantiate(explosion);
-            GameObject.Destroy(go, 3f);
-            go.transform.position = fo.transform.position;
-            fo.Shine();
+            warnSound.Play();
+            Warning();
+            //GameObject go = GameObject.Instantiate(explosion);
+            //GameObject.Destroy(go, 3f);
+            //go.transform.position = fo.transform.position;
+            //fo.Shine();
             //ChangeHealthPoint(-1);
         }
+    }
+
+    public void Warning()
+    {
+        warnStartTime = Time.time;
+        LineRenderer lr = leftHand.GetComponentInChildren<LineRenderer>();
+        lr.startColor = warnStart;
+        lr.endColor = warnEnd;
+        lr = rightHand.GetComponentInChildren<LineRenderer>();
+        lr.startColor = warnStart;
+        lr.endColor = warnEnd;
+        disableHandle = true;
+    }
+
+    public void ResetLine()
+    {
+        LineRenderer lr = leftHand.GetComponentInChildren<LineRenderer>();
+        lr.startColor = originalStart;
+        lr.endColor = originalEnd;
+        lr = rightHand.GetComponentInChildren<LineRenderer>();
+        lr.startColor = originalStart;
+        lr.endColor = originalEnd;
+        disableHandle = false;
     }
 
     public void TriggerOnClick()
@@ -187,6 +224,7 @@ public class GameManager : MonoBehaviour {
         spawner = GetComponent<Spawner>();
         scoreSystem = GetComponent<ScoreSystem>();
         hitSound = GameObject.Find("HitSound").GetComponent<AudioSource>();
+        warnSound = GameObject.Find("WarnSound").GetComponent<AudioSource>();
         UpdateText();
         //print(gm);
         spawner.state = gameMode;
@@ -198,6 +236,10 @@ public class GameManager : MonoBehaviour {
         GameObject carl = Instantiate(Resources.Load(objPath, typeof(GameObject))) as GameObject;
         carl.transform.position = TrainingCarl.transform.position;
         carl.transform.parent = TrainingCarl.transform.parent;
+
+        LineRenderer lr = leftHand.GetComponentInChildren<LineRenderer>();
+        originalStart = lr.startColor;
+        originalEnd = lr.endColor;
     }
 
     // Update is called once per frame
@@ -205,6 +247,12 @@ public class GameManager : MonoBehaviour {
     {
         debug.text = state.ToString();
         //distance check
+
+        if (Time.time - warnStartTime < warnTime)
+        {
+            ResetLine();
+        }
+
         if (gameMode == GameMode.Twist)
         {
             float distance = Vector3.Distance(leftHand.transform.position, rightHand.transform.position);
