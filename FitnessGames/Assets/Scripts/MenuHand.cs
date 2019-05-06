@@ -1,10 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MenuHand : MonoBehaviour {
+public class MenuHand : MonoBehaviour
+{
 
+
+    private float maxRayDistance = 25f;
+
+    public Material changeMaterial;
     // Inspector parameters
     //[Tooltip("The tracking device used for tracking the real hand.")]
     //public CommonTracker tracker;
@@ -27,6 +33,7 @@ public class MenuHand : MonoBehaviour {
     // Called at the end of the program initialization
     void Start()
     {
+        //print(hand.position);
         state = MenuHandState.Open;
         // Ensure hand interactive is properly configured
         hand.type = AffectType.Virtual;
@@ -35,8 +42,18 @@ public class MenuHand : MonoBehaviour {
     // FixedUpdate is not called every graphical frame but rather every physics frame
     void Update()
     {
-
-        // If state is open
+        /*
+        Ray ray = new Ray(hand.position, Vector3.forward);
+        RaycastHit hit;
+        Debug.Log(hand.position);
+        Debug.Log(hand.position + Vector3.forward * maxRayDistance);
+        Debug.DrawLine(hand.position, hand.position + Vector3.forward * maxRayDistance, Color.red, Time.deltaTime, false);
+ 
+        if (Physics.Raycast(ray, out hit, maxRayDistance))
+        {
+            Debug.Log("you hit");
+        }
+        // If state is open*/
         if (state == MenuHandState.Open)
         {
 
@@ -68,16 +85,20 @@ public class MenuHand : MonoBehaviour {
                 GameObject go = hand.ongoingTriggers[0].gameObject;
                 if (go.tag == "Button")
                 {
-                    if(go.name == "Exit")
+                    go.GetComponent<MeshRenderer>().material = changeMaterial;
+                    if (go.name == "Exit")
                     {
-                        Application.Quit();
+
+                        EditorApplication.isPlaying = false;
                     }
-                    else {
+                    else
+                    {
+                        //go.GetComponent<Material>().mainTexture = texture;
                         GameManager.gameMode = (GameMode)System.Enum.Parse(typeof(GameMode), go.name);
                         //SceneManager.LoadScene(go.name, LoadSceneMode.Single);
                         SceneManager.LoadScene("Mixed", LoadSceneMode.Single);
                     }
-                    
+
                 }
 
             }
