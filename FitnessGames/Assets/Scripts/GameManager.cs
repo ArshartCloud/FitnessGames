@@ -93,6 +93,7 @@ public class GameManager : MonoBehaviour {
     Color warnEnd = Color.red;
     bool disableHandle = false;
     GameObject carl;
+    bool armPause = false;
 
     //Awake is always called before any Start functions
     void Awake()
@@ -126,7 +127,6 @@ public class GameManager : MonoBehaviour {
     {
         Time.timeScale = 1;
         state = GameState.Playing;
-        pauseBoard.gameObject.SetActive(false);
     }
 
     public void MissObject(FlyingObject fo)
@@ -372,24 +372,38 @@ public class GameManager : MonoBehaviour {
     {
         if (state == GameState.Training)
         {
+            textBoard.gameObject.SetActive(true);
+            pauseBoard.gameObject.SetActive(false);
             if (gameMode == GameMode.ArmRaise)
             {
                 textBoard.SetText("Raise and Lower Your Arms\nPress <Trigger> to Skip Training");
-            } else if (gameMode == GameMode.Twist)
+            }
+            else if (gameMode == GameMode.Twist)
             {
                 textBoard.SetText("Twist your Arms\nPress <Trigger> to Skip Training");
             }
-        } else if (state == GameState.Playing)
+        }
+        else if (state == GameState.Counting)
         {
+            pauseBoard.fontSize = 15f;
+        }
+        else if (state == GameState.Playing)
+        {
+            textBoard.gameObject.SetActive(true);
+            pauseBoard.gameObject.SetActive(false);
             textBoard.SetText("Press <Menu Button> to Pause");
         } else if (state == GameState.Pause)
         {
+            textBoard.gameObject.SetActive(false);
+            pauseBoard.gameObject.SetActive(true);
             pauseBoard.fontSize = 7f;
             pauseBoard.SetText("Press <Menu button> to Continue\nPress <trigger> to Exit");
-            pauseBoard.gameObject.SetActive(true);
         }
         else if (state == GameState.GameOver)
         {
+            pauseBoard.fontSize = 7f;
+            textBoard.gameObject.SetActive(false);
+            pauseBoard.gameObject.SetActive(true);
             pauseBoard.gameObject.SetActive(true);
             pauseBoard.text = "Game Over\n Your score is " + scoreSystem.Score.ToString();
         }
