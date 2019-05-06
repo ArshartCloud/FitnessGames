@@ -89,8 +89,8 @@ public class GameManager : MonoBehaviour {
     float warnStartTime;
     Color originalStart;
     Color originalEnd;
-    Color warnStart;
-    Color warnEnd;
+    Color warnStart = Color.red;
+    Color warnEnd = Color.red;
     bool disableHandle = false;
     GameObject carl;
 
