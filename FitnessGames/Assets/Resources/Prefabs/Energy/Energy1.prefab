@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114686129241858558}
   - component: {fileID: 54078274479516060}
   - component: {fileID: 114469902663902684}
+  - component: {fileID: 135471120645547768}
   m_Layer: 0
   m_Name: Energy1
   m_TagString: Untagged
@@ -72,7 +73,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1289020176640266}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 3.1690192, y: 12.335796, z: -49.54115}
+  m_LocalPosition: {x: 5.0914855, y: 1.0160104, z: -7.117051}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4765190829265632}
@@ -189,7 +190,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liveTime: 6
   collectable: 1
+  autoRotate: 0
+  rotateSpeed: 5
   score: 1
+--- !u!135 &135471120645547768
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1289020176640266}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!198 &198414267886860814
 ParticleSystem:
   m_ObjectHideFlags: 1
