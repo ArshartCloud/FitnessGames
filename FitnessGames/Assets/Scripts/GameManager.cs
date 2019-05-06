@@ -92,6 +92,7 @@ public class GameManager : MonoBehaviour {
     Color warnStart;
     Color warnEnd;
     bool disableHandle = false;
+    GameObject carl;
 
     //Awake is always called before any Start functions
     void Awake()
@@ -233,10 +234,9 @@ public class GameManager : MonoBehaviour {
         //state = GameState.Counting;
         targetTime = trainingTime + Time.realtimeSinceStartup;
         string objPath = "Prefabs/Animation/" + gameMode.ToString();
-        GameObject carl = Instantiate(Resources.Load(objPath, typeof(GameObject))) as GameObject;
+        carl = Instantiate(Resources.Load(objPath, typeof(GameObject))) as GameObject;
         carl.transform.position = TrainingCarl.transform.position;
         carl.transform.parent = TrainingCarl.transform.parent;
-        TrainingCarl = carl;
 
         LineRenderer lr = leftHand.GetComponentInChildren<LineRenderer>();
         originalStart = lr.startColor;
