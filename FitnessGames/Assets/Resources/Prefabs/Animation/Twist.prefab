@@ -1224,7 +1224,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4191139395759014}
   m_Layer: 0
-  m_Name: Twist_new
+  m_Name: Twist
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

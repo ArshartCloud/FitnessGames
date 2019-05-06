@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114686129241858558}
   - component: {fileID: 54078274479516060}
   - component: {fileID: 114469902663902684}
-  - component: {fileID: 135471120645547768}
+  - component: {fileID: 136337246603514678}
   m_Layer: 0
   m_Name: Energy1
   m_TagString: Untagged
@@ -73,8 +73,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1289020176640266}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 3.185598, y: 10.713183, z: -22.366562}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: -6.4025173, y: 0.5206976, z: -2.4793558}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children:
   - {fileID: 4765190829265632}
   m_Father: {fileID: 0}
@@ -193,17 +193,18 @@ MonoBehaviour:
   autoRotate: 1
   rotateSpeed: 200
   score: 1
---- !u!135 &135471120645547768
-SphereCollider:
+--- !u!136 &136337246603514678
+CapsuleCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1289020176640266}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
   m_Radius: 1.5
+  m_Height: 0
+  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!198 &198414267886860814
 ParticleSystem:
@@ -5279,7 +5280,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 0.2, y: 0.2, z: 0.2}
+    m_Scale: {x: 0.1, y: 0.1, z: 0.1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
