@@ -241,6 +241,7 @@ public class GameManager : MonoBehaviour {
         LineRenderer lr = leftHand.GetComponentInChildren<LineRenderer>();
         originalStart = lr.startColor;
         originalEnd = lr.endColor;
+        //Warning();
     }
 
     // Update is called once per frame
@@ -249,8 +250,9 @@ public class GameManager : MonoBehaviour {
         debug.text = state.ToString();
         //distance check
 
-        if (Time.time - warnStartTime < warnTime)
+        if (Time.time - warnStartTime > warnTime)
         {
+            warnStartTime = Time.time + 999;
             ResetLine();
         }
 
