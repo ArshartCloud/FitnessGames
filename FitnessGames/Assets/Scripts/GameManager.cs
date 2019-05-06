@@ -328,7 +328,7 @@ public class GameManager : MonoBehaviour {
 
     void TrainingEnd()
     {
-        Destroy(TrainingCarl);
+        Destroy(carl);
         state = GameState.Playing;
         UpdateText();
     }

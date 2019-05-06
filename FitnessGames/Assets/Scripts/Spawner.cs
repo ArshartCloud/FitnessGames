@@ -47,6 +47,7 @@ public class Spawner : MonoBehaviour
     public void SetHeadPos(Vector3 pos)
     {
         userHeadPos = pos;
+        userHeadPos.y = 0;
     }
 
     public void StartSpawn()
