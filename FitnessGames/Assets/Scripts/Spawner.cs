@@ -8,6 +8,7 @@ public class Spawner : MonoBehaviour
     public float energyDeltaX = .8f;
     public float energyUpDeltaY = 1f;
     public float energyDownDeltaY = -.75f;
+    public float TwistDeltaY = 0f;
     public float asteroidDeltaX = 1f;
     public float asteroidDeltaY = .5f;
     public float asteroidSquatDeltaX = .4f;
@@ -104,8 +105,8 @@ public class Spawner : MonoBehaviour
                     // spaceship step
                     step++;
                     //Factory objectFactory = asteroidFactory[Random.Range(0, asteroidFactory.Length)];
-                    Spawn(asteroidFactory, userHeadPos + new Vector3(asteroidDeltaX, 0f, spawnDeltaZ));
-                    Spawn(asteroidFactory, userHeadPos + new Vector3(-asteroidDeltaX, 0f, spawnDeltaZ));
+                    Spawn(asteroidFactory, userHeadPos + new Vector3(asteroidDeltaX, TwistDeltaY, spawnDeltaZ));
+                    Spawn(asteroidFactory, userHeadPos + new Vector3(-asteroidDeltaX, TwistDeltaY, spawnDeltaZ));
                 } else
                 {
                     // asteroid step
