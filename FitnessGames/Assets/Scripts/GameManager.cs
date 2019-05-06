@@ -236,6 +236,7 @@ public class GameManager : MonoBehaviour {
         GameObject carl = Instantiate(Resources.Load(objPath, typeof(GameObject))) as GameObject;
         carl.transform.position = TrainingCarl.transform.position;
         carl.transform.parent = TrainingCarl.transform.parent;
+        TrainingCarl = carl;
 
         LineRenderer lr = leftHand.GetComponentInChildren<LineRenderer>();
         originalStart = lr.startColor;
