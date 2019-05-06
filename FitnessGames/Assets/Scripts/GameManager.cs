@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour {
     {
         Pause,
         Playing,
+        Instruction,
         Training,
         Counting,
         GameOver
@@ -27,7 +28,7 @@ public class GameManager : MonoBehaviour {
 
 
     [Tooltip("Game Mode")]
-    static public GameMode gameMode = GameMode.ArmRaise;
+    static public GameMode gameMode = GameMode.Mixed;
 
     [Tooltip("Head of user")]
     public Transform headTracker;
@@ -50,10 +51,11 @@ public class GameManager : MonoBehaviour {
     [Tooltip("TextMeshPro that show pause information")]
     public TextMeshPro pauseBoard;
 
+    [Tooltip("TextMeshPro that show game information")]
+    public TextMeshPro instructionBoard;
+
     [Tooltip("OUR CARL!")]
     public GameObject TrainingCarl;
-
-    public GameObject explosion;
 
     [Tooltip("Sound of Button click (pause/skip)")]
     public AudioSource buttonClickSound;
@@ -64,6 +66,7 @@ public class GameManager : MonoBehaviour {
     [Tooltip("Distance check for twist")]
     public float maxCountingTime = 3f;
 
+    public float instructionTime = 5f;
     public float trainingTime = 1f;
 
     public float warnTime = 3f;
@@ -221,26 +224,29 @@ public class GameManager : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        //GameManager.gm = (GameMode)System.Enum.Parse(typeof(GameMode), "Twist");
         spawner = GetComponent<Spawner>();
+        if (gameMode != GameMode.Mixed)
+        {
+            spawner.state = gameMode;
+        }
+        else
+        {
+            // TEST ONLY 
+            // TODO
+            gameMode = spawner.state;
+        }
+
         scoreSystem = GetComponent<ScoreSystem>();
         hitSound = GameObject.Find("HitSound").GetComponent<AudioSource>();
         warnSound = GameObject.Find("WarnSound").GetComponent<AudioSource>();
-        UpdateText();
-        //print(gm);
-        spawner.state = gameMode;
         spawner.SetHeadPos(headTracker.position);
-        state = GameState.Training;
-        //state = GameState.Counting;
-        targetTime = trainingTime + Time.realtimeSinceStartup;
-        string objPath = "Prefabs/Animation/" + gameMode.ToString();
-        carl = Instantiate(Resources.Load(objPath, typeof(GameObject))) as GameObject;
-        carl.transform.position = TrainingCarl.transform.position;
-        carl.transform.parent = TrainingCarl.transform.parent;
+        state = GameState.Instruction;
+        targetTime = instructionTime + Time.realtimeSinceStartup;
 
         LineRenderer lr = leftHand.GetComponentInChildren<LineRenderer>();
         originalStart = lr.startColor;
         originalEnd = lr.endColor;
+        UpdateText();
         //Warning();
     }
 
@@ -268,8 +274,22 @@ public class GameManager : MonoBehaviour {
                 UpdateText();
             }
         }
-     
-        if (state == GameState.Counting)
+        
+        if (state == GameState.Instruction)
+        {
+            if (targetTime - Time.realtimeSinceStartup <= 0f)
+            {
+                TrainingBegin();
+            }
+        }
+        else if (state == GameState.Training)
+        {
+            if (targetTime - Time.realtimeSinceStartup <= 0f)
+            {
+                CountDown();
+            }
+        }
+        else if (state == GameState.Counting)
         {
             if (targetTime - Time.realtimeSinceStartup > 0)
                 pauseBoard.text = Mathf.RoundToInt(targetTime - Time.realtimeSinceStartup).ToString();
@@ -289,13 +309,6 @@ public class GameManager : MonoBehaviour {
             scoreSystem.timer -= Time.deltaTime;
             scoreSystem.TextUpdate();
             if (scoreSystem.timer <= 0) GameOver();
-        }
-        else if (state == GameState.Training)
-        {
-            if (targetTime - Time.realtimeSinceStartup <= 0f)
-            {
-                CountDown();
-            }
         }
         else if (state == GameState.GameOver)
         {
@@ -326,6 +339,16 @@ public class GameManager : MonoBehaviour {
         targetTime = maxCountingTime + Time.realtimeSinceStartup;
         state = GameState.Counting;
         pauseBoard.fontSize = 15f;
+    }
+
+    void TrainingBegin()
+    {
+        state = GameState.Training;
+        string objPath = "Prefabs/Animation/" + gameMode.ToString();
+        carl = Instantiate(Resources.Load(objPath, typeof(GameObject))) as GameObject;
+        carl.transform.position = TrainingCarl.transform.position;
+        carl.transform.parent = TrainingCarl.transform.parent;
+        targetTime = trainingTime + Time.realtimeSinceStartup;
     }
 
     void TrainingEnd()
@@ -370,8 +393,27 @@ public class GameManager : MonoBehaviour {
 
     void UpdateText()
     {
+        if (state == GameState.Instruction)
+        {
+            instructionBoard.gameObject.SetActive(true);
+            pauseBoard.gameObject.SetActive(false);
+            textBoard.gameObject.SetActive(false);
+            if (gameMode == GameMode.ArmRaise)
+            {
+                instructionBoard.SetText("Raise and Lower Your Arms to collect Energy Stars\n\nPress <Menu Button> to pause the game");
+            }
+            else if (gameMode == GameMode.Twist)
+            {
+                instructionBoard.SetText("Spread your arms to collect Energy Stars\n\nTwist your arms to avoid Asteroids\n\nDon't bring your arms too close\n\nPress <Menu Button> to pause the game");
+            }
+            else if (gameMode == GameMode.Squat)
+            {
+                instructionBoard.SetText("Squat to advoid Asteroids\n\nRaise your arms to collect Energy Stars\n\nPress <Menu Button> to pause the game");
+            }
+        }
         if (state == GameState.Training)
         {
+            instructionBoard.gameObject.SetActive(false);
             textBoard.gameObject.SetActive(true);
             pauseBoard.gameObject.SetActive(false);
             if (gameMode == GameMode.ArmRaise)
@@ -380,7 +422,11 @@ public class GameManager : MonoBehaviour {
             }
             else if (gameMode == GameMode.Twist)
             {
-                textBoard.SetText("Twist your Arms\nPress <Trigger> to Skip Training");
+                textBoard.SetText("Spread your arms to collect energy stars\nTwist your arms to avoid comets\nDon't bring your arms too close\nPress <Trigger> to Skip Training");
+            }
+            else if (gameMode == GameMode.Squat)
+            {
+                textBoard.SetText("Squat to advoid asteroid\nPress <Trigger> to Skip Training");
             }
         }
         else if (state == GameState.Counting)
