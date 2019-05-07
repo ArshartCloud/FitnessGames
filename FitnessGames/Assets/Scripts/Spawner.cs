@@ -8,9 +8,10 @@ public class Spawner : MonoBehaviour
     public float energyDeltaX = .8f;
     public float energyUpDeltaY = 1f;
     public float energyDownDeltaY = -.75f;
-    public float TwistDeltaY = 0f;
-    public float asteroidDeltaX = 1f;
-    public float asteroidDeltaY = .5f;
+    public float twistDeltaY = 0f;
+    public float energyTwistDeltaX = 1f;
+    public float asteroidTwistDeltaX = 1f;
+    public float asteroidSquatDeltaY = .5f;
     public float asteroidSquatDeltaX = .4f;
 
     //[Tooltip("The object Spawn each time")]
@@ -39,7 +40,7 @@ public class Spawner : MonoBehaviour
     //[Tooltip("Parameters for twist")]
     //public float spaceShipWidth = 1f;
 
-    Vector3 userHeadPos;
+    public Vector3 userHeadPos;
     Vector3 movingDirection = new Vector3(0, 0, -1);
     float lastSpawnTime;
     int step = 0;  // each step for spawning
@@ -49,7 +50,7 @@ public class Spawner : MonoBehaviour
     public void SetHeadPos(Vector3 pos)
     {
         userHeadPos = pos;
-        userHeadPos.y = 0;
+        userHeadPos.x = 0;
     }
 
     public void StartSpawn()
@@ -102,18 +103,14 @@ public class Spawner : MonoBehaviour
             {
                 if (step == 0)
                 {
-                    // spaceship step
                     step++;
-                    //Factory objectFactory = asteroidFactory[Random.Range(0, asteroidFactory.Length)];
-                    Spawn(asteroidFactory, userHeadPos + new Vector3(asteroidDeltaX, TwistDeltaY, spawnDeltaZ));
-                    Spawn(asteroidFactory, userHeadPos + new Vector3(-asteroidDeltaX, TwistDeltaY, spawnDeltaZ));
+                    Spawn(asteroidFactory, userHeadPos + new Vector3(asteroidTwistDeltaX, twistDeltaY, spawnDeltaZ));
+                    Spawn(asteroidFactory, userHeadPos + new Vector3(-asteroidTwistDeltaX, twistDeltaY, spawnDeltaZ));
                 } else
                 {
-                    // asteroid step
                     step = 0;
-                    //go.transform.position = spawnPoints[0].position;
-                    Spawn(energyFactory, userHeadPos + new Vector3(energyDeltaX, TwistDeltaY, spawnDeltaZ));
-                    Spawn(energyFactory, userHeadPos + new Vector3(-energyDeltaX, TwistDeltaY, spawnDeltaZ));
+                    Spawn(energyFactory, userHeadPos + new Vector3(energyTwistDeltaX, twistDeltaY, spawnDeltaZ));
+                    Spawn(energyFactory, userHeadPos + new Vector3(-energyTwistDeltaX, twistDeltaY, spawnDeltaZ));
                 }
             }
             else if (state == GameMode.Squat)
@@ -121,9 +118,9 @@ public class Spawner : MonoBehaviour
                 if (step == 0)
                 {
                     step++;
-                    Spawn(asteroidFactory, userHeadPos + new Vector3(0f, asteroidDeltaY, spawnDeltaZ));
-                    Spawn(asteroidFactory, userHeadPos + new Vector3(asteroidSquatDeltaX, asteroidDeltaY, spawnDeltaZ));
-                    Spawn(asteroidFactory, userHeadPos + new Vector3(asteroidSquatDeltaX, asteroidDeltaY, spawnDeltaZ));
+                    Spawn(asteroidFactory, userHeadPos + new Vector3(0f, asteroidSquatDeltaY, spawnDeltaZ));
+                    Spawn(asteroidFactory, userHeadPos + new Vector3(asteroidSquatDeltaX, asteroidSquatDeltaY, spawnDeltaZ));
+                    Spawn(asteroidFactory, userHeadPos + new Vector3(-asteroidSquatDeltaX, asteroidSquatDeltaY, spawnDeltaZ));
                 }
                 else
                 {

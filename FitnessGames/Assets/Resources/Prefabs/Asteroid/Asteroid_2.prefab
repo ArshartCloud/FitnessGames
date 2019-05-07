@@ -366,6 +366,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liveTime: 20
   collectable: 0
+  autoRotate: 0
+  rotateSpeed: 5
   score: 1
 --- !u!114 &114730000360667126
 MonoBehaviour:

@@ -130,6 +130,7 @@ public class GameManager : MonoBehaviour {
     {
         Time.timeScale = 1;
         state = GameState.Playing;
+        UpdateText();
     }
 
     public void MissObject(FlyingObject fo)
@@ -253,8 +254,19 @@ public class GameManager : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        debug.text = state.ToString();
+        //debug.text = state.ToString();
         //distance check
+        if (Input.GetKeyDown("up"))
+        {
+            print("Up press, menu click");
+            MenuOnClick();
+        }
+        if (Input.GetKeyDown("down"))
+        {
+            print("down press, trigger click");
+            TriggerOnClick();
+        }
+
 
         if (Time.time - warnStartTime > warnTime)
         {
@@ -265,12 +277,14 @@ public class GameManager : MonoBehaviour {
         if (gameMode == GameMode.Twist)
         {
             float distance = Vector3.Distance(leftHand.transform.position, rightHand.transform.position);
-            if (distance < minimumDistance && state == GameState.Playing)
+            //print(distance);
+            if (distance < minimumDistance)
             {
                 ArmPause();
             }
             else if(distance > minimumDistance && state == GameState.Pause)
             {
+                armPause = false;
                 UpdateText();
             }
         }
@@ -280,13 +294,14 @@ public class GameManager : MonoBehaviour {
             if (targetTime - Time.realtimeSinceStartup <= 0f)
             {
                 TrainingBegin();
+                spawner.SetHeadPos(headTracker.position);
             }
         }
         else if (state == GameState.Training)
         {
             if (targetTime - Time.realtimeSinceStartup <= 0f)
             {
-                CountDown();
+                TrainingEnd();
             }
         }
         else if (state == GameState.Counting)
@@ -299,7 +314,6 @@ public class GameManager : MonoBehaviour {
                 if (targetTime - Time.realtimeSinceStartup <= -.5f)
                 {
                     spawner.StartSpawn();
-                    TrainingEnd();
                     GameContinue();
                 }
             }
@@ -323,8 +337,9 @@ public class GameManager : MonoBehaviour {
 
     void ArmPause()
     {
+        armPause = true;
         GamePause();
-        textBoard.SetText("Please open your arms and press <Menu Button> to continue");
+        //textBoard.SetText("Please open your arms and press <Menu Button> to continue");
     }
 
     void ReturnToMenu()
@@ -335,9 +350,9 @@ public class GameManager : MonoBehaviour {
 
     void CountDown()
     {
+        state = GameState.Counting;
         pauseBoard.gameObject.SetActive(true);
         targetTime = maxCountingTime + Time.realtimeSinceStartup;
-        state = GameState.Counting;
         pauseBoard.fontSize = 15f;
     }
 
@@ -349,12 +364,14 @@ public class GameManager : MonoBehaviour {
         carl.transform.position = TrainingCarl.transform.position;
         carl.transform.parent = TrainingCarl.transform.parent;
         targetTime = trainingTime + Time.realtimeSinceStartup;
+        UpdateText();
     }
 
     void TrainingEnd()
     {
         Destroy(carl);
-        state = GameState.Playing;
+        //state = GameState.Counting;
+        CountDown();
         UpdateText();
     }
 
@@ -387,8 +404,10 @@ public class GameManager : MonoBehaviour {
 
     void GameOver()
     {
+        Time.timeScale = 0;
         state = GameState.GameOver;
         targetTime = maxCountingTime + Time.realtimeSinceStartup;
+        UpdateText();
     }
 
     void UpdateText()
@@ -408,25 +427,25 @@ public class GameManager : MonoBehaviour {
             }
             else if (gameMode == GameMode.Squat)
             {
-                instructionBoard.SetText("Squat to advoid Asteroids\n\nRaise your arms to collect Energy Stars\n\nPress <Menu Button> to pause the game");
+                instructionBoard.SetText("Squat to avoid Asteroids\n\nRaise your arms to collect Energy Stars\n\nPress <Menu Button> to pause the game");
             }
         }
         if (state == GameState.Training)
         {
-            instructionBoard.gameObject.SetActive(false);
+            instructionBoard.transform.parent.gameObject.SetActive(false);
             textBoard.gameObject.SetActive(true);
             pauseBoard.gameObject.SetActive(false);
             if (gameMode == GameMode.ArmRaise)
             {
-                textBoard.SetText("Raise and Lower Your Arms\nPress <Trigger> to Skip Training");
+                textBoard.SetText("Raise and Lower Your Arms to collect Energy Stars\nPress <Trigger> to Skip Training");
             }
             else if (gameMode == GameMode.Twist)
             {
-                textBoard.SetText("Spread your arms to collect energy stars\nTwist your arms to avoid comets\nDon't bring your arms too close\nPress <Trigger> to Skip Training");
+                textBoard.SetText("Spread your arms to collect Energy Stars\nTwist your arms to avoid Asteroids\nDon't bring your arms too close\nPress <Trigger> to Skip Training");
             }
             else if (gameMode == GameMode.Squat)
             {
-                textBoard.SetText("Squat to advoid asteroid\nPress <Trigger> to Skip Training");
+                textBoard.SetText("Squat to avoid Asteroids\nRaise your arms to collect Energy Stars\nPress <Trigger> to Skip Training");
             }
         }
         else if (state == GameState.Counting)
@@ -442,15 +461,22 @@ public class GameManager : MonoBehaviour {
         {
             textBoard.gameObject.SetActive(false);
             pauseBoard.gameObject.SetActive(true);
-            pauseBoard.fontSize = 7f;
-            pauseBoard.SetText("Press <Menu button> to Continue\nPress <trigger> to Exit");
+            pauseBoard.fontSize = 5f;
+            if (armPause)
+            {
+                pauseBoard.SetText("Spread Your Arms");
+            }
+            else
+            {
+                pauseBoard.SetText("Press <Menu button> to Continue\nPress <trigger> to Exit");
+            }
         }
         else if (state == GameState.GameOver)
         {
-            pauseBoard.fontSize = 7f;
+            pauseBoard.fontSize = 5f;
             textBoard.gameObject.SetActive(false);
             pauseBoard.gameObject.SetActive(true);
-            pauseBoard.gameObject.SetActive(true);
+            scoreSystem.tmpro.gameObject.SetActive(false);
             pauseBoard.text = "Game Over\n Your score is " + scoreSystem.Score.ToString();
         }
     }

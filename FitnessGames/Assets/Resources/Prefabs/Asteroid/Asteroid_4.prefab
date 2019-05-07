@@ -379,6 +379,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liveTime: 20
   collectable: 0
+  autoRotate: 0
+  rotateSpeed: 5
   score: 1
 --- !u!136 &136807755018897118
 CapsuleCollider:

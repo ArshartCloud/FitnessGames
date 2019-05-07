@@ -61,7 +61,7 @@ public class Interactive : Element {
 	protected override void UpdateBehaviors () {
 
 		// Ensure physics control the rigidbody
-		rigidbody.isKinematic = false;
+		//rigidbody.isKinematic = false;
 		// Check for a change in gravity and set it
 		if (rigidbody.useGravity != useGravity) {
 			rigidbody.useGravity = useGravity;
