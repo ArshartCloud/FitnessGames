@@ -278,7 +278,7 @@ public class GameManager : MonoBehaviour {
         {
             float distance = Vector3.Distance(leftHand.transform.position, rightHand.transform.position);
             //print(distance);
-            if (distance < minimumDistance)
+            if (distance < minimumDistance && state == GameState.Pause || state == GameState.Playing)
             {
                 ArmPause();
             }
