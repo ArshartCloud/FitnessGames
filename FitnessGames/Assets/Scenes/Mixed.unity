@@ -2426,7 +2426,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnDeltaZ: 20
   energyDeltaX: 0.6
-  energyUpDeltaY: 1.5
+  energyUpDeltaY: 1.3
   energyDownDeltaY: -0.2
   twistDeltaY: -0.2
   energyTwistDeltaX: 1.5
